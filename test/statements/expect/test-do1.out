@@ -1,0 +1,63 @@
+Test Do Procedure:
+<HR>
+
+Dim i, j <br>
+
+i = 1 <br>
+Do While i < 3 <br>
+  i = 1<br>
+  i = i + 1 <br>
+Loop <br>
+  i = 2<br>
+  i = i + 1 <br>
+Loop <br>
+
+i = 3 <br>
+Do Until i < 1 <br>
+  i = 3<br>
+  i = i - 1 <br>
+Loop <br>
+  i = 2<br>
+  i = i - 1 <br>
+Loop <br>
+  i = 1<br>
+  i = i - 1 <br>
+Loop <br>
+
+i = 1 <br>
+Do <br>
+  i = 1<br>
+  i = i + 1 <br>
+Loop While i < 3 <br>
+  i = 2<br>
+  i = i + 1 <br>
+Loop While i < 3 <br>
+
+i = 3 <br>
+Do <br>
+  i = 3<br>
+  i = i - 1 <br>
+Loop Until i < 1 <br>
+  i = 2<br>
+  i = i - 1 <br>
+Loop Until i < 1 <br>
+  i = 1<br>
+  i = i - 1 <br>
+Loop Until i < 1 <br>
+
+i = 1 <br>
+Do While i < 2 <br>
+  j = 1 <br>
+  Do While j < 10 <br>
+    if j &gt; 2 then <br>
+    j = j + 1 <br>
+  Loop <br>
+    if j &gt; 2 then <br>
+    j = j + 1 <br>
+  Loop <br>
+    if j &gt; 2 then <br>
+      Exit Loop <br>
+  i = i + 1 <br>
+  i = 2<br>
+  j = 3<br>
+Loop <br>

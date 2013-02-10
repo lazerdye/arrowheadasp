@@ -1,0 +1,33 @@
+Test Redim Statement
+
+Dim Arr()       <br>
+ReDim Arr(2)    <br>
+Arr(1) = "One"  <br>
+Arr(2) = "Two"  <br>
+UBOUND(Arr) =   2<br>
+ReDim Arr(3)    <br>
+Arr(1) =        <br>
+Arr(2) =        <br>
+Arr(3) =        <br>
+UBOUND(Arr) =   3<br>
+Arr(1) = "One"  <br>
+Arr(2) = "Two"  <br>
+Arr(3) = "Three"<br>
+ReDim Preserve Arr(4) <br>A
+Arr(1) =        One<br>
+Arr(2) =        Two<br>
+Arr(3) =        Three<br>
+Arr(4) =        <br>
+UBOUND(Arr) =   4<br>
+ReDim Arr(2, 3, 4) <br>
+UBOUND(Arr, 1) = 2<br>
+UBOUND(Arr, 2) = 3<br>
+UBOUND(Arr, 3) = 4<br>
+Arr(1,2,3) = "One" <br>
+Arr(2,3,4) = "Two" <br>
+ReDim Preserve Arr(2, 3, 5) <br>
+UBOUND(Arr, 1) = 2<br>
+UBOUND(Arr, 2) = 3<br>
+UBOUND(Arr, 3) = 5<br>
+Arr(1,2,3) = One<br>
+Arr(2,3,4) = Two<br>

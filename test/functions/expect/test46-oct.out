@@ -1,0 +1,10 @@
+<!-- Test Oct function.
+-->
+
+Oct(0) = 0<br>
+IsNull(Oct(NULL)) = True<br>
+Oct(7) = 7<br>
+Oct(8) = 10<br>
+Oct(14) = 16<br>
+Oct(255) = 377<br>
+Oct(10240) = 24000<br>

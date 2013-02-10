@@ -1,0 +1,29 @@
+<!-- Test IsObject function.
+-->
+
+Dim VarInt, VarDouble, VarString, VarDate, VarObj, VarArray
+	<br>
+Dim VarNull, VarUninitialized
+	<br>
+
+VarInt = 1 <br>
+VarDouble = 0.123 <br>
+VarString = "Hello" <br>
+VarDate = DateSerial(1, 25, 1982) <br>
+Set VarObj = CreateObject("Scripting.Dictionary")
+	<br>
+VarArray = Array(1, 2, 3, 4)
+	<br>
+VarNull = NULL
+	<br>
+
+IsObject(VarInt) = False<br>
+IsObject(VarDouble) = False<br>
+IsObject(VarString) = False<br>
+IsObject(VarEmpty) = False<br>
+IsObject(VarObj) = True<br>
+IsObject(VarArray) = False<br>
+IsObject(VarNull) = False<br>
+IsObject(VarUninitialized) = False<br>
+IsObject(VarUndefined) = False<br>
+IsObject(Empty) = False<br>

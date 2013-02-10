@@ -1,0 +1,19 @@
+Test Erase function
+
+
+
+Arr(1) = 1<br>
+Arr(2) = 2<br>
+Arr(3) = 3<br>
+Erase Arr <br>
+Arr(1) = <br>
+Arr(2) = <br>
+Arr(3) = <br>
+
+
+
+DynArr(1) = 1<br>
+DynArr(2) = 2<br>
+DynArr(3) = 3<br>
+Erase DynArr <br>
+IsArray(DynArr) = True<br>

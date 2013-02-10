@@ -1,0 +1,6 @@
+Testing simple form values.
+
+Request.QueryString("valuea") = first value, second=value<br>
+Request.QueryString("valuea").Count = 2<br>
+Request.QueryString("valuea")(1) = first value<br>
+Request.QueryString("valuea")(2) = second=value<br>

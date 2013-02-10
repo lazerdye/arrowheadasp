@@ -1,0 +1,14 @@
+Test Integer Modulus operator:
+<hr>
+
+19 Mod 6.7 = 5<br>
+5 mod 2 = 1<br>
+"5" mod 2 = 1<br>
+5 mod "2" = 1<br>
+"5" mod "2" = 1<br>
+IsNull(Null Mod 2) = True<br>
+IsNull(1 Mod Null) = True<br>
+IsNull(Null Mod Null) = True<br>
+Empty Mod 2 = 0<br>
+
+

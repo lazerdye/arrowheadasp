@@ -1,0 +1,15 @@
+Test proper call syntax.
+
+
+
+No_Param_Sub In No_Param_Sub<br>
+One_Param_Sub In One_Param_Sub(One)<br>
+Two_Param_Sub In Two_Param_Sub(One,Two)<br>
+
+No_Param_Func In No_Param_Func <br>
+One_Param_Func In One_Param_Func(One) <br>
+Two_Param_Func In Two_Param_Func(One,Two) <br>
+
+No_Param_Func = In No_Param_Func Return<br>
+One_Param_Func = In One_Param_Func(One) Return<br>
+Two_Param_Func = In Two_Param_Func(One,Two) Return<br>

@@ -1,0 +1,10 @@
+
+Test Option Explicit, no option explicit.
+
+Sub MySub       <br>
+<br>
+Var1 = "blah"   <br>
+MySub           <br>
+    Var1 = "hi" <br>
+End Sub         <br>
+Var1 =          hi<br>

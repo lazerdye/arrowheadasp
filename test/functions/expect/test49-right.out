@@ -1,0 +1,7 @@
+<!-- Test Right function.
+-->
+
+Right("abcdef", 1) = f<br>
+Right("abcdef", 0) = <br>
+Right("abcdef", 8) = abcdef<br>
+IsNull(Right(Null, 2)) = True<br>

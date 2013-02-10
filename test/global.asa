@@ -1,0 +1,16 @@
+<SCRIPT LANGUAGE="VBScript" RUNAT=Server>
+
+Sub Application_OnStart
+	Application("ApplicationOnStart") = "Start"
+End Sub
+
+Sub Session_OnStart
+	session.timeout = 60
+	Session("SessionOnStart") = "Start"
+End Sub
+
+Sub Session_OnEnd
+	Session("SessionOnEnd") = "End"
+End Sub
+
+</SCRIPT>

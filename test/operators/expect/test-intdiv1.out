@@ -1,0 +1,15 @@
+Test Integer Division operator:
+<hr>
+
+5 \ 2 = 2<br>
+"1" \ 2 = 0<br>
+1 \ "2" = 0<br>
+"1" \ "2" = 0<br>
+3 \ 2 = 1<br>
+5.6 \ 2.7 = 2<br>
+IsNull(Null \ 2) = True<br>
+IsNull(1 \ Null) = True<br>
+IsNull(Null \ Null) = True<br>
+Empty \ 2 = 0<br>
+
+

@@ -1,0 +1,13 @@
+<!-- Test Int function.
+-->
+
+Int(0.1) = 
+	0<br>
+Int(0.5) = 
+	0<br>
+Int(0.6) = 
+	0<br>
+Int(1.9) = 
+	1<br>
+Int(-8.4) = 
+	-9<br>

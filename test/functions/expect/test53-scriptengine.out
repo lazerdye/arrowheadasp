@@ -1,0 +1,8 @@
+<!-- Test ScriptEngine, ScriptEngineBuildVersion, ScriptEngineMajorVersion,
+	ScriptEngineMinorVersion function.
+-->
+
+ScriptEngine = VBScript<br>
+ScriptEngineBuildVersion = ^[0-9]+$<br>
+ScriptEngineMajorVersion = 5<br>
+ScriptEngineMinorVersion = ^[0-9]+$<br>

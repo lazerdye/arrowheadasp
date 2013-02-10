@@ -1,0 +1,9 @@
+<!-- Test CreateObject function.
+-->
+
+Dim A <br>
+Set A = CreateObject("Scripting.Dictionary")
+    <br>
+A("Hello") = "there" 
+    <br>
+A("Hello") = there<br>

@@ -1,0 +1,25 @@
+Test Select Statement
+
+<pre>
+Sub Test_Select(Value)
+    Select Case Value
+        Case "A"
+            Response.Write("The Value is A")
+        Case "B"
+            Response.Write("The Value is B")
+        Case "C", "D", "E"
+            Response.Write("The Value is C, D, or E")
+        Case Else
+            Response.Write("The Value is not A, B, C, D, or E")
+    End Select
+End Sub
+
+
+
+Test_Select("A") The Value is A
+Test_Select("B") The Value is B
+Test_Select("C") The Value is C, D, or E
+Test_Select("D") The Value is C, D, or E
+Test_Select("E") The Value is C, D, or E
+Test_Select("F") The Value is not A, B, C, D, or E
+</pre>

@@ -1,0 +1,32 @@
+<!-- Test DateAdd function.
+-->
+
+DateAdd("yyyy", 1, "12-Jan-01") = 1/12/2002<br>
+DateAdd("yyyy", -1, "12-Jan-00") = 1/12/1999<br>
+DateAdd("q", 1, "12-Jan-01") = 4/12/2001<br>
+DateAdd("q", -1, "12-Jan-01") = 10/12/2000<br>
+DateAdd("m", 1, "12-Jan-01") = 2/12/2001<br>
+DateAdd("m", -1, "12-Jan-01") = 12/12/2000<br>
+DateAdd("y", 1, "12-Jan-01") = 1/13/2001<br>
+DateAdd("y", -1, "1-Jan-01") = 12/31/2000<br>
+DateAdd("d", 1, "12-Jan-01") = 1/13/2001<br>
+DateAdd("d", -1, "1-Jan-01") = 12/31/2000<br>
+DateAdd("w", 1, "12-Jan-01") = 1/13/2001<br>
+DateAdd("w", -1, "1-Jan-01") = 12/31/2000<br>
+DateAdd("ww", 1, "12-Jan-01") = 1/19/2001<br>
+DateAdd("ww", -1, "1-Jan-01") = 12/25/2000<br>
+DateAdd("h", 1, "12-Jan-01 01:23:45") = 
+	1/12/2001 2:23:45 AM<br>
+DateAdd("h", -1, "1-Jan-01 00:23:45") = 
+	12/31/2000 11:23:45 PM<br>
+DateAdd("n", 1, "12-Jan-01 01:23:45") = 
+	1/12/2001 1:24:45 AM<br>
+DateAdd("n", -1, "1-Jan-01 00:00:30") = 
+	12/31/2000 11:59:30 PM<br>
+DateAdd("s", 1, "12-Jan-01 01:23:45") = 
+	1/12/2001 1:23:46 AM<br>
+DateAdd("s", -2, "1-Jan-01 00:00:01") = 
+	12/31/2000 11:59:59 PM<br>
+
+DateAdd("m", 1, "31-Jan-95") = 2/28/1995<br>
+DateAdd("m", 1, "31-Jan-96") = 2/29/1996<br>

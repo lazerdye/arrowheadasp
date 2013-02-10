@@ -1,0 +1,6 @@
+Testing simple form values.
+
+Request.Form("valuea") = first value, second value<br>
+Request.Form("valuea").Count = 2<br>
+Request.Form("valuea")(1) = first value<br>
+Request.Form("valuea")(2) = second value<br>

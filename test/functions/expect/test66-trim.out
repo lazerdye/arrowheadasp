@@ -1,0 +1,17 @@
+<!-- Test Trim function.
+-->
+
+Trim("nospaces") = "nospaces"<br>
+Trim("one space") = "one space"<br>
+Trim("   ") = ""<br>
+Trim(" space") = "space"<br>
+Trim("  space") = "space"<br>
+Trim("   space") = "space"<br>
+Trim("   one space") = "one space"<br>
+Trim("space ") = "space"<br>
+Trim("space  ") = "space"<br>
+Trim("space   ") = "space"<br>
+Trim(" space ") = "space"<br>
+Trim("  space  ") = "space"<br>
+Trim("   space   ") = "space"<br>
+IsNull(Trim(Null)) = True<br>

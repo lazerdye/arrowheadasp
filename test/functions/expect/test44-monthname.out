@@ -1,0 +1,41 @@
+<!-- Test MonthName function.
+-->
+
+MonthName(1) = January<br>
+MonthName(2) = February<br>
+MonthName(3) = March<br>
+MonthName(4) = April<br>
+MonthName(5) = May<br>
+MonthName(6) = June<br>
+MonthName(7) = July<br>
+MonthName(8) = August<br>
+MonthName(9) = September<br>
+MonthName(10) = October<br>
+MonthName(11) = November<br>
+MonthName(12) = December<br>
+
+MonthName(1, True) = Jan<br>
+MonthName(2, True) = Feb<br>
+MonthName(3, True) = Mar<br>
+MonthName(4, True) = Apr<br>
+MonthName(5, True) = May<br>
+MonthName(6, True) = Jun<br>
+MonthName(7, True) = Jul<br>
+MonthName(8, True) = Aug<br>
+MonthName(9, True) = Sep<br>
+MonthName(10, True) = Oct<br>
+MonthName(11, True) = Nov<br>
+MonthName(12, True) = Dec<br>
+
+MonthName(1, False) = January<br>
+MonthName(2, False) = February<br>
+MonthName(3, False) = March<br>
+MonthName(4, False) = April<br>
+MonthName(5, False) = May<br>
+MonthName(6, False) = June<br>
+MonthName(7, False) = July<br>
+MonthName(8, False) = August<br>
+MonthName(9, False) = September<br>
+MonthName(10, False) = October<br>
+MonthName(11, False) = November<br>
+MonthName(12, False) = December<br>

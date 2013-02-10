@@ -1,0 +1,31 @@
+Test Select Statement
+
+<pre>
+Sub Test_Select(Value)
+    Select Case Value %&gt;
+        &lt;%Case "A"
+            %&gt;The Value is A
+        &lt;%Case "B"
+            %&gt;The Value is B
+        &lt;%Case "C", "D", "E"
+            %&gt;The Value is C, D, or E
+        &lt;%Case Else
+            %&gt;The Value is not A, B, C, D, or E
+    &lt;%End Select
+End Sub
+
+
+
+Test_Select("A") The Value is A
+        
+Test_Select("B") The Value is B
+        
+Test_Select("C") The Value is C, D, or E
+        
+Test_Select("D") The Value is C, D, or E
+        
+Test_Select("E") The Value is C, D, or E
+        
+Test_Select("F") The Value is not A, B, C, D, or E
+    
+</pre>

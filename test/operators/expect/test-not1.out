@@ -1,0 +1,10 @@
+Test logical negation operator:
+<hr>
+
+not True =         False<br>
+not False =        True<br>
+IsNull(not Null) = True<br>
+not &amp;FF =       -256<br>
+not &amp;00 =       -1<br>
+not &amp;01 =       -2<br>
+

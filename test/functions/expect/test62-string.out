@@ -1,0 +1,10 @@
+<!-- Test String function.
+-->
+
+String(1, 65) = A<br>
+String(2, 65) = AA<br>
+String(10, 65) = AAAAAAAAAA<br>
+String(0, 65) = <br>
+String(12, "a") = aaaaaaaaaaaa<br>
+String(12, "z") = zzzzzzzzzzzz<br>
+String(12, "chacha") = cccccccccccc<br>

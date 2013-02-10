@@ -1,0 +1,19 @@
+<!-- Test CLng function.
+	Rounds to nearest number. If fractional part is exactly 0.5,
+	rounds to the nearest even number.
+-->
+
+CLNG("12") = 12<br>
+CLNG(0.1) = 0<br>
+CLNG(0.5) = 0<br>
+CLNG(0.7) = 1<br>
+CLNG(1.0) = 1<br>
+CLNG(1.5) = 2<br>
+CLNG(1.7) = 2<br>
+CLNG(2.5) = 2<br>
+CLNG(3.5) = 4<br>
+CLNG(-0.5) = 0<br>
+CLNG(-1.5) = -2<br>
+CLNG(-2.5) = -2<br>
+CLNG(TRUE) = -1<br>
+CLNG(FALSE) = 0<br>

@@ -1,0 +1,305 @@
+<project name="arrowhead" default="dist" basedir=".">
+
+<!-- set global properties for this build -->
+
+<!-- Change this parameter to point to servers other than localhost:8080 -->
+<property name="asptest.server" value="localhost:8080"/> 
+<!--
+<property name="build.compiler" value="jikes"/>
+-->
+<property name="VERSION"  value="0.2.3"/>
+<property name="src" value="src"/>
+<property name="build" value="build"/>
+<property name="dist"  value="dist"/>
+<property name="lib"  value="lib"/>
+<property name="docs"  value="docs"/>
+<property name="test"  value="test"/>
+<property name="report"  value="report"/>
+
+<path id="class.path">
+    <fileset dir="${lib}">
+        <include name="**/*.jar"/>
+    </fileset>
+</path>
+
+<path id="test.classpath">
+    <fileset dir="${lib}">
+        <include name="**/*.jar"/>
+    </fileset>
+    <fileset dir="${dist}/lib">
+        <include name="**/*.jar"/>
+    </fileset>
+</path>
+
+<target name="init" description="initializes the build environment and checks the status of files">
+<!-- Create the time stamp -->
+<tstamp/>
+<!-- Create the build directory structure used by compile -->
+<mkdir dir="${build}"/>
+<mkdir dir="${dist}"/>
+
+<!-- Check if javacc is installed correctly -->
+<available file="${javacchome}" type="dir" property="javacc.present"/>
+<available classname="org.javacc.parser.Main"
+    property="javacc.present"
+    classpathref="class.path"/>
+
+<fail unless="javacc.present">JavaCC could not be located.
+See docs/COMPILING.txt for help.
+</fail>
+
+<!-- Check if the aspparse files have changed. It only checks if AspParse.jj
+    is newer than AspParseTokenManager.java, although many files are created by
+    javacc. -->
+<uptodate property="AspParseBuild.notRequired"
+        targetfile="${src}/com/tripi/asp/parse/AspParseTokenManager.java">
+    <srcfiles dir="${src}/com/tripi/asp/parse">
+        <patternset>
+            <include name="AspParse.jj" />
+        </patternset>
+    </srcfiles>
+</uptodate>
+
+<!-- Check if the aspparse files have changed. It only checks if VBScript.jj
+    is newer than VBScriptTokenManager.java, although many files are created by
+    javacc. -->
+<uptodate property="VBScriptBuild.notRequired"
+        targetfile="${src}/com/tripi/asp/parse/VBScript.java">
+    <srcfiles dir="${src}/com/tripi/asp/parse">
+        <patternset>
+            <include name="VBScript.jj" />
+        </patternset>
+    </srcfiles>
+</uptodate>
+
+<!-- Check if the servlet API is installed -->
+<available classname="javax.servlet.ServletContext"
+    property="servletapi.present"
+    classpathref="class.path"/>
+
+<fail unless="servletapi.present">The Servlet API could not be found.
+Please see docs/COMPILING.txt for help.
+</fail>
+
+<!-- Check if JRegEx is installed -->
+<available classname="jregex.Matcher"
+    property="jregex.present"
+    classpathref="class.path"/>
+
+<fail unless="jregex.present">The JRegEx library could not be found.
+Please see docs/COMPILING.txt for help.
+</fail>
+
+<!-- Check if JavaMail is installed -->
+<available classname="javax.mail.Message"
+    property="javamail.present"
+    classpathref="class.path"/>
+
+<fail unless="javamail.present">The JavaMail library could not be found.
+Please see docs/COMPILING.txt for help.
+</fail>
+
+<!-- Check if activation api is installed -->
+<available classname="javax.activation.DataHandler"
+    property="activation.present"
+    classpathref="class.path"/>
+
+<fail unless="activation.present">The JAF (activation) library could not be found.
+Please see docs/COMPILING.txt for help.
+</fail>
+
+<!-- Check if OSCache is installed -->
+<available classname="com.opensymphony.oscache.general.GeneralCacheAdministrator"
+    property="oscache.present"
+    classpathref="class.path"/>
+
+<fail unless="oscache.present">The OSCache library could not be found.
+Please see docs/COMPILING.txt for help.
+</fail>
+
+<!-- Check if log4j is installed -->
+<available classname="org.apache.log4j.Category"
+    property="log4j.present"
+    classpathref="class.path"/>
+
+<fail unless="log4j.present">The log4j library could not be found.
+Please see docs/COMPILING.txt for help.
+</fail>
+
+<!-- Check if JUnit is installed -->
+<available classname="junit.framework.Test"
+    property="junit.present"
+    classpathref="class.path"/>
+
+<fail unless="junit.present">The JUnit library could not be found.
+Please see docs/TESTING.txt for help.
+</fail>
+
+<!-- Check if jdom is installed -->
+<available classname="org.jdom.Document"
+    property="jdom.present"
+    classpathref="class.path"/>
+
+<fail unless="jdom.present">The jdom library could not be found.
+Please see docs/COMPILING.txt for help.
+</fail>
+
+</target>
+
+<target name="compile" depends="init,aspparse,vbscript"
+        description="compiles all of the java code into class files.">
+    <!-- Compile the java code from ${src} into ${build} -->
+    <javac srcdir="${src}" destdir="${build}" debug="on"
+        deprecation="on" classpathref="class.path" source="1.4"/>
+</target>
+
+<target name="aspparse" unless="AspParseBuild.notRequired"
+        description="builds the parser for ASP scripts">
+    <java classname="org.javacc.parser.Main" fork="yes"
+            classpathref="class.path">
+         <arg value="-OUTPUT_DIRECTORY=${src}/com/tripi/asp/parse"/>
+         <arg value="-STATIC=false"/>
+         <arg value="${src}/com/tripi/asp/parse/AspParse.jj"/>
+    </java>
+</target>
+
+<target name="vbscript" unless="VBScriptBuild.notRequired"
+        description="builds the parser for VBScript code">
+    <java classname="org.javacc.parser.Main" fork="yes"
+            classpathref="class.path">
+         <arg value="-BUILD_PARSER=false"/>
+         <arg value="-OUTPUT_DIRECTORY=${src}/com/tripi/asp/parse"/>
+         <arg value="-STATIC=false"/>
+         <arg value="${src}/com/tripi/asp/parse/VBScript.jj"/>
+    </java>
+    <java classname="org.javacc.parser.Main" fork="yes"
+            classpathref="class.path">
+         <arg value="-USER_TOKEN_MANAGER=true"/>
+         <arg value="-OUTPUT_DIRECTORY=${src}/com/tripi/asp/parse"/>
+         <arg value="-STATIC=false"/>
+         <arg value="${src}/com/tripi/asp/parse/VBScript.jj"/>
+    </java>
+</target>
+
+<target name="dist" depends="compile"
+    description="builds a distribution, this is the default target">
+<!-- Create the distribution directory -->
+<mkdir dir="${dist}/lib"/>
+
+<!-- Put everything exception testing code into arrowhead-(version).jar -->
+<jar jarfile="${dist}/lib/arrowhead-${VERSION}-${DSTAMP}.jar"
+    basedir="${build}" update="Yes"
+    excludes="com/tripi/asp/test/**"/>
+
+<!-- Put testing code exception testing code into arrowhead-test-(version).jar -->
+<jar jarfile="${dist}/lib/arrowhead-test-${VERSION}-${DSTAMP}.jar"
+    basedir="${build}" update="Yes"
+    includes="com/tripi/asp/test/**"/>
+</target>
+
+<target name="javadoc"
+        description="builds the java documentation">
+    <mkdir dir="${docs}"/>
+    <mkdir dir="${docs}/api"/>
+    
+    <javadoc packagenames="com.tripi.asp.*"
+           sourcepath="${src}"
+           defaultexcludes="yes"
+           destdir="docs/api"
+           author="true"
+           version="true"
+           use="true"
+           windowtitle="Arrowhead ASP">
+        <doctitle>Arrowhead ASP</doctitle>
+        <bottom><![CDATA[<i>Copyright &#169; 2002 Terence Haddock</i>]]></bottom>
+    </javadoc>
+</target>
+
+<target name="prep-test" depends="dist"
+        description="Prepare the test web environment">
+    <mkdir dir="${test}/WEB-INF/lib"/>
+
+    <copy tofile="${test}/WEB-INF/lib/arrowhead-${VERSION}.jar"
+        file="${dist}/lib/arrowhead-${VERSION}-${DSTAMP}.jar"/>
+    
+    <copy todir="${test}/WEB-INF/lib">
+        <fileset dir="${lib}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </copy>
+    
+</target>
+
+<target name="test" description="Perform full acceptance testing">
+
+    <mkdir dir="${report}"/>
+    <mkdir dir="${report}/html"/>
+    <mkdir dir="${test}/objects/out"/>
+    <mkdir dir="${test}/functions/out"/>
+    <mkdir dir="${test}/statements/out"/>
+    <mkdir dir="${test}/operators/out"/>
+    <mkdir dir="${test}/misc/out"/>
+    <mkdir dir="${test}/ADODB/out"/>
+
+    <!-- Do the unit tests -->
+    <junit fork="yes" dir="${test}">
+        <jvmarg value="-Dlog4j.configure=log4j.configure"/>
+        <jvmarg value="-Dasptest.server=${asptest.server}"/>
+        <classpath>
+            <path refid="test.classpath" />
+            <fileset dir="${lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </classpath>
+        <formatter type="xml" />
+        <test name="com.tripi.asp.test.AspTest" todir="${report}"/>
+    </junit>
+
+    <!-- Format the report -->
+    <junitreport todir="${report}">
+        <fileset dir="${report}">
+            <include name="TEST-*.xml"/>
+        </fileset>
+        <report format="noframes" todir="${report}/html"/>
+    </junitreport>
+</target>
+
+<target name="release" depends="dist" description="builds release files">
+    <mkdir dir="${dist}/release"/>
+    <copy tofile="${dist}/release/arrowhead-${VERSION}.jar" file="${dist}/lib/arrowhead-${VERSION}-${DSTAMP}.jar"/>
+    <tar compression="gzip"
+        destfile="${dist}/release/arrowhead-src-${VERSION}.tar.gz"
+        basedir="."
+        excludes="**/CVS, ${build}/**, ${dist}/**, ${docs}/api/**, ${report}/**, ${test}/*/out/**, ${lib}/**, ${src}/com/tripi/asp/parse/AspParseConstants.java, ${src}/com/tripi/asp/parse/AspParseTokenManager.java, ${src}/com/tripi/asp/parse/SimpleCharStream.java, ${src}/com/tripi/asp/parse/TokenManager.java, ${src}/com/tripi/asp/parse/VBScriptConstants.java, ${src}/com/tripi/asp/parse/VBScript.java, ${src}/com/tripi/asp/parse/VBScriptTokens.java, ${src}/com/tripi/asp/parse/VBScriptTokenManager.java, **/.*"/>
+    <copy tofile="${dist}/release/INSTALL-${VERSION}.txt" file="${docs}/INSTALL.txt"/>
+    <copy tofile="${dist}/release/UPGRADING-${VERSION}.txt" file="${docs}/UPGRADING.txt"/>
+</target>
+
+<!-- The clean target removes all of the preprocessed files, including the
+     output source files of the lexical analyzer and LR1 parser -->
+<target name="clean" description="cleans the output directories for a clean slate">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${test}/WEB-INF/lib"/>
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete dir="${docs}/api"/>
+    <delete dir="${report}/html"/>
+    <delete dir="${report}"/>
+    <delete dir="${test}/functions/out"/>
+    <delete dir="${test}/objects/out"/>
+    <delete dir="${test}/statements/out"/>
+    <delete dir="${test}/operators/out"/>
+    <delete dir="${test}/misc/out"/>
+    <delete dir="${test}/ADODB/out"/>
+    <delete file="${src}/com/tripi/asp/parse/AspParseConstants.java"/>
+    <delete file="${src}/com/tripi/asp/parse/AspParseTokenManager.java"/>
+    <delete file="${src}/com/tripi/asp/parse/SimpleCharStream.java"/>
+    <delete file="${src}/com/tripi/asp/parse/TokenManager.java"/>
+    <delete file="${src}/com/tripi/asp/parse/VBScriptConstants.java"/>
+    <delete file="${src}/com/tripi/asp/parse/VBScript.java"/>
+    <delete file="${src}/com/tripi/asp/parse/VBScriptTokens.java"/>
+    <delete file="${src}/com/tripi/asp/parse/VBScriptTokenManager.java"/>
+</target>
+</project>
+
+

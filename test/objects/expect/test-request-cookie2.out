@@ -1,0 +1,5 @@
+Test getting a cookie.
+
+Hello = ^THERE=two&TEST=test|TEST=test&THERE=two$<br>
+Hello("Test") = test<br>
+Hello("There") = two<br>

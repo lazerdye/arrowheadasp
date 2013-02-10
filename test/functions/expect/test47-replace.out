@@ -1,0 +1,37 @@
+<!-- Test Replace function.
+-->
+
+Replace("this is a test", "is a", "was a") =
+	this was a test<br>
+Replace("this is a test", "is an", "was a") =
+	this is a test<br>
+Replace("this is a test", "t", "w") =
+	whis is a wesw<br>
+Replace("this is a test", "t", "w", 1) =
+	whis is a wesw<br>
+Replace("this is a test", "t", "w", 2) =
+	his is a wesw<br>
+Replace("this is a test", "t", "w", 20) =
+	<br>
+Replace("this is a test", "t", "w", 1, -1) =
+	whis is a wesw<br>
+Replace("this is a test", "t", "w", 1, 0) =
+	this is a test<br>
+Replace("this is a test", "t", "w", 1, 1) =
+	whis is a test<br>
+Replace("this is a test", "t", "w", 1, 2) =
+	whis is a west<br>
+Replace("this is a test", "t", "w", 1, 3) =
+	whis is a wesw<br>
+Replace("this is a test", "t", "w", 1, 4) =
+	whis is a wesw<br>
+Replace("tHiS iS a TeSt", "t", "w", 1, -1, vbBinaryCompare) =
+	wHiS iS a TeSw<br>
+Replace("tHiS iS a TeSt", "t", "w", 1, -1, vbTextCompare) =
+	wHiS iS a weSw<br>
+Replace("", "t", "w") =
+	<br>
+Replace("This is a test", "", "w") =
+	This is a test<br>
+Replace("This is a test", "t", "") =
+	This is a es<br>

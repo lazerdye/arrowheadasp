@@ -1,0 +1,8 @@
+<!-- Test Hex function.
+-->
+
+Hex(0) = 0<br>
+IsNull(Hex(NULL)) = True<br>
+Hex(14) = E<br>
+Hex(255) = FF<br>
+Hex(10240) = 2800<br>

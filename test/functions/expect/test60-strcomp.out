@@ -1,0 +1,14 @@
+<!-- Test StrComp function.
+-->
+
+StrComp("cccc", "cccc") = 0<br>
+StrComp("cccc", "bbbb") = 1<br>
+StrComp("cccc", "dddd") = -1<br>
+StrComp("aaaa", "AAAA") = 1<br>
+StrComp("aaaa", "AAAA", vbTextCompare) =
+	0<br>
+StrComp("aaaa", "AAAA", vbBinaryCompare) =
+	1<br>
+IsNull(StrComp(NULL, "aaa")) = True<br>
+IsNull(StrComp("aaa", NULL)) = True<br>
+IsNull(StrComp(NULL, NULL)) = True<br>

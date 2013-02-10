@@ -1,0 +1,24 @@
+<!-- Test Join function.
+-->
+
+Dim A1, A2, A3
+	<br>
+
+A1 = Array(1, 2, 3)
+	<br>
+
+A2 = Array("Hello", "There")
+	<br>
+
+A3 = Array()
+	<br>
+
+Join(A1) = 1 2 3<br>
+Join(A2) = Hello There<br>
+Join(A3) = <br>
+Join(A1, ",") = 1,2,3<br>
+Join(A2, ",") = Hello,There<br>
+Join(A3, ",") = <br>
+Join(A1, "cha") = 1cha2cha3<br>
+Join(A2, "cha") = HellochaThere<br>
+Join(A3, "cha") = <br>

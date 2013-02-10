@@ -1,0 +1,5 @@
+Test binary read.
+
+Request.TotalBytes = 39<br>
+Result = Request.BinaryRead(Request.TotalBytes)
+    <br>

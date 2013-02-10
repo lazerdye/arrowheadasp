@@ -1,0 +1,7 @@
+
+Here is the test of Field Precision.<br>
+Precision("StringField"): ^255|0$<br>
+    Precision("IntField"): 10<br>
+
+
+The End.

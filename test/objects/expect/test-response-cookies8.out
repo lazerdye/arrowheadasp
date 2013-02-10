@@ -1,0 +1,6 @@
+Test Response.Cookies, simple cookies
+
+Response.Cookies("First") = "One"
+    <br>
+Response.Cookies("First").HasKeys =
+    False<br>

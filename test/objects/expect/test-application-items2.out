@@ -1,0 +1,6 @@
+Test storing items into the application object by key.
+
+Application.Contents.Item("Hi") = "There" <br>
+Application.Contents.Item("Hi") = There<br>
+Application.Contents("Hi") = There<br>
+Application("Hi") = There<br>

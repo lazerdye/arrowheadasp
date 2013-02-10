@@ -1,0 +1,10 @@
+<!-- Test Len function.
+-->
+
+Len("abcdef") = 6<br>
+Len("") = 0<br>
+Len("1") = 1<br>
+Len("12") = 2<br>
+Len("123") = 3<br>
+Len("1234") = 4<br>
+IsNull(Len(Null)) = True<br>

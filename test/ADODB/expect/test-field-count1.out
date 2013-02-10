@@ -1,0 +1,11 @@
+
+Here is the test of Fields.Count method.<br>
+Count = 4<br />
+Field: intfield<br />
+        Value: 2<br />
+Field: stringfield<br />
+        Value: Second Row<br />
+Field: nullablestringfield<br />
+        Value: <br />
+Field: nullableintfield<br />
+        Value: <br />

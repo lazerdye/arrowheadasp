@@ -1,0 +1,15 @@
+<!-- Test LBound function.
+-->
+
+Dim A1(2), A2(3, 4), A3(5, 6, 7)
+	<br>
+
+LBound(A1) = 0<br>
+LBound(A2) = 0<br>
+LBound(A3) = 0<br>
+LBound(A1, 1) = 0<br>
+LBound(A2, 1) = 0<br>
+LBound(A3, 1) = 0<br>
+LBound(A2, 2) = 0<br>
+LBound(A3, 2) = 0<br>
+LBound(A3, 3) = 0<br>

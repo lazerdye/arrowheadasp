@@ -1,0 +1,71 @@
+/**
+ * ArrowHead ASP Server 
+ * This is a source file for the ArrowHead ASP Server - an 100% Java
+ * VBScript interpreter and ASP server.
+ *
+ * For more information, see http://www.tripi.com/arrowhead
+ *
+ * Copyright (C) 2002  Terence Haddock
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+options {
+    IGNORE_CASE = true;
+    UNICODE_INPUT = true;
+    STATIC = false;
+    BUILD_PARSER = false;
+}
+
+PARSER_BEGIN(AspParse)
+package com.tripi.asp.parse;
+
+import com.tripi.asp.*;
+
+public class AspParse {
+}
+
+PARSER_END(AspParse)
+
+TOKEN :
+{
+    < INCLUDE : "<!--" (<WS>)* "#include" (<WS>)* ("virtual"|"file")
+        (<WS>)* "=" (<WS>)* ( <FILENAME> | <QUOTEDFILENAME> ) (<WS>)* "-->" >
+|   < HTML : "<!" | "</S" | (~["<"] | "<" ~["!","%","/"] | "</" ~["S"] )+ >
+|   < LANGUAGEDEF : <STARTASP> (<WS>)* "@" (<NOTENDASP>)* <ENDASP> >
+|   < OUTPUTSCRIPT : <STARTASP> (<WS>)* "=" (<NOTENDASP>)* <ENDASP> >
+|   < ASPSCRIPT : <STARTASP> (<NOTENDASP>)* <ENDASP> >
+|   < SERVERSCRIPT : <SCRIPTSTART> (<NOTSCRIPTEND>)* <SCRIPTEND> >
+|   < #NOTSTARTASP : (~["<"] | ( "<" ~["%"] ) ) >
+|   < #NOTENDASP : (~["%"] | ( "%" ~[">"] ) ) >
+|   < #STARTASP : "<" "%" >
+|   < #ENDASP : "%" ">" >
+|   < #WS : " " | "\n" | "\r" | "\t" >
+|   < #FILENAME : ( ~["%"," ",">"] )* >
+|   < #QUOTEDFILENAME : "\"" ( ~["\""] )* "\"" >
+|   < #PARAM : ( ~["\""] ( ~[" ",">"] )* ) | ( "\"" ( ~["\""] )* "\"" ) >
+|   < #LANGUAGEPARAM : "LANGUAGE" (<WS>)* "=" <PARAM> >
+|   < #RUNATPARAM : "RUNAT" (<WS>)* "=" ( "SERVER" | "\"SERVER\"" ) >
+|   < #SCRIPTSTART : ( "<" (<WS>)* "SCRIPT" (<WS>)+ <LANGUAGEPARAM> (<WS>)+
+        <RUNATPARAM> (<WS>)* ">" ) |
+        ( "<" (<WS>)* "SCRIPT" (<WS>)+ <RUNATPARAM> (<WS>)+
+            <LANGUAGEPARAM> (<WS>)* ">" ) >
+|   < #NOTSCRIPTEND : ( ~["<"] | "<" ~["/"] | "</" ~["S"] | "</S" ~["C"] |
+        "</SC" ~["R"] | "</SCR" ~["I"] | "</SCRI" ~["P"] | "</SCRIP" ~["T"] |
+        "</SCRIPT" ~[">"] ) >
+|   < #SCRIPTEND : "</SCRIPT>" >
+}
+
+

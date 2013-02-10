@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2.3.dtd">
+
+<web-app>
+        <listener>
+            <listener-class>com.tripi.asp.AspSessionHandler</listener-class>
+        </listener>
+
+        <servlet>
+                <servlet-name>
+                        asp
+                </servlet-name>
+                <servlet-class>
+                        com.tripi.asp.AspServlet
+                </servlet-class>
+                <!--  Use this parameter to setup a log4j.configure file
+                      This is really only useful for debugging ArrowHead.
+                <init-param>
+                        <param-name>log4j.configure</param-name>
+                        <param-value>/home/thaddock/cvs/arrowhead/arrowhead/test/log4j.configure</param-value>
+                </init-param>
+                -->
+                <!-- Use this parameter to set the caching class.
+                     Possible caching classes:
+                     com.tripi.asp.cache.HashMapScriptCache
+                            - Default scripting cache, in-memory only
+                     com.tripi.asp.cache.OSCacheScriptCache
+                            - Caching with OSCache, configurable for neat
+                              stuff like persistent caching to disk, 
+                              cluster-wide caching, etc...
+                <init-param>
+                        <param-name>com.tripi.asp.cache.ScriptCache</param-name>
+                        <param-value>com.tripi.asp.cache.OSCacheScriptCache</param-value>
+                </init-param>
+                -->
+
+                <init-param>
+                        <param-name>object.ADODB.RecordSet</param-name>
+                        <param-value>com.tripi.asp.ADODB.RecordSet</param-value>
+                </init-param>
+                <init-param>
+                        <param-name>object.ADODB.Connection</param-name>
+                        <param-value>com.tripi.asp.ADODB.Connection</param-value>
+                </init-param>
+                <init-param>
+                        <param-name>object.ADODB.Command</param-name>
+                        <param-value>com.tripi.asp.ADODB.Command</param-value>
+                </init-param>
+                <init-param>
+                        <param-name>object.Scripting.Dictionary</param-name>
+                        <param-value>com.tripi.asp.Scripting.Dictionary</param-value>
+                </init-param>
+                <init-param>
+                        <param-name>object.CDONTS.NewMail</param-name>
+                        <param-value>com.tripi.asp.CDONTS.NewMail</param-value>
+                </init-param>
+                <!-- This is the default exception handler, print the stack trace
+                <init-param>
+                        <param-name>exception.handler.1</param-name>
+                        <param-value>com.tripi.asp.PrintExceptionHandler</param-value>
+                </init-param>
+                -->
+                <!-- This exception handler prints a static message
+                <init-param>
+                        <param-name>exception.handler.2</param-name>
+                        <param-value>com.tripi.asp.PrintMessageExceptionHandler</param-value>
+                </init-param>
+                <init-param>
+                        <param-name>exception.parameter.2.Message</param-name>
+                        <param-value>Sorry, a system error has occured. Please try again. If this problem persists, contact the System Administrator&lt;br&gt;</param-value>
+                </init-param>
+                -->
+                <!-- This exception handler sends out a message
+                <init-param>
+                        <param-name>exception.handler.3</param-name>
+                        <param-value>com.tripi.asp.MailExceptionHandler</param-value>
+                </init-param>
+                <init-param>
+                        <param-name>exception.parameter.3.To</param-name>
+                        <param-value>admin@example.com</param-value>
+                </init-param>
+                -->
+        </servlet>
+        <servlet-mapping>
+                  <servlet-name>
+                          asp
+                  </servlet-name>
+                  <url-pattern>
+                          *.asp
+                </url-pattern>
+        </servlet-mapping>
+        <welcome-file-list>
+                <welcome-file>
+                        default.asp
+                </welcome-file>
+                <welcome-file>
+                        Default.asp
+                </welcome-file>
+                <welcome-file>
+                        index.asp
+                </welcome-file>
+        </welcome-file-list>
+</web-app>
+

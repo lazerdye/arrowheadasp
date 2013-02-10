@@ -1,0 +1,26 @@
+<!-- Test WeekdayName function.
+-->
+
+WeekdayName(vbSunday) = Sunday<br>
+WeekdayName(vbMonday) = Monday<br>
+WeekdayName(vbTuesday) = Tuesday<br>
+WeekdayName(vbWednesday) = Wednesday<br>
+WeekdayName(vbThursday) = Thursday<br>
+WeekdayName(vbFriday) = Friday<br>
+WeekdayName(vbSaturday) = Saturday<br>
+
+WeekdayName(vbSunday, TRUE) = Sun<br>
+WeekdayName(vbMonday, TRUE) = Mon<br>
+WeekdayName(vbTuesday, TRUE) = Tue<br>
+WeekdayName(vbWednesday, TRUE) = Wed<br>
+WeekdayName(vbThursday, TRUE) = Thu<br>
+WeekdayName(vbFriday, TRUE) = Fri<br>
+WeekdayName(vbSaturday, TRUE) = Sat<br>
+
+WeekdayName(vbSunday, False) = Sunday<br>
+WeekdayName(vbMonday, False) = Monday<br>
+WeekdayName(vbTuesday, False) = Tuesday<br>
+WeekdayName(vbWednesday, False) = Wednesday<br>
+WeekdayName(vbThursday, False) = Thursday<br>
+WeekdayName(vbFriday, False) = Friday<br>
+WeekdayName(vbSaturday, False) = Saturday<br>

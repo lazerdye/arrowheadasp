@@ -1,0 +1,930 @@
+/**
+ * ArrowHead ASP Server 
+ * This is a source file for the ArrowHead ASP Server - an 100% Java
+ * VBScript interpreter and ASP server.
+ *
+ * For more information, see http://www.tripi.com/arrowhead
+ *
+ * Copyright (C) 2002  Terence Haddock
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ */
+options {
+    IGNORE_CASE = true;
+    UNICODE_INPUT = true;
+    STATIC = false;
+}
+
+PARSER_BEGIN(VBScript)
+package com.tripi.asp.parse;
+
+import com.tripi.asp.*;
+
+public class VBScript {
+    static private long parseHexSequence(String seq)
+    {
+        String justHex = seq.substring(2);
+        return Long.parseLong(justHex, 16);
+    }
+}
+
+PARSER_END(VBScript)
+
+
+TOKEN :
+{
+    < NL : ("\r")? "\n" >
+|   < HTML: "<%%>" >
+|   < OUTPUT : "<%=%>" >
+|   < SEMI : ":" >
+|   < CONCAT : "&" >
+|   < DOT : "." (<WS>)* <IDENTIFIER> >
+|   < EXP : "^" >
+|   < LPAREN : "(" >
+|   < MINUS : "-" >
+|   < PLUS : "+" >
+|   < EQ : "=" >
+|   < GT : ">" >
+|   < LT : "<" >
+|   < GE : ">=" >
+|   < LE : "<=" >
+|   < NE : "<>" >
+|   < RPAREN : ")" >
+|   < COMMA : "," >
+|   < INTDIV : "\\" >
+|   < DIV : "/" >
+|   < MULT : "*" >
+|   < STRING : ["\""] (~["\"","\n","\r"] | "\"\"" ) * ["\""] >
+|   < REMARK : "REM " (~["\n","\r"])* >
+|   < INTEGER : ( ["0"-"9"] )+ >
+|   < DOUBLE : ( ["0"-"9"] )+ "." ( ["0"-"9"] )+ >
+|   < HEXSEQUENCE : ( "&H" ( [ "0"-"9", "A"-"F" ] )+ ) >
+|   < EXITFUNCTION : "EXIT" (<WS>)* "FUNCTION" >
+|   < EXITSUB : "EXIT" (<WS>)* "SUB" >
+|   < EXITDO : "EXIT" (<WS>)* "DO" >
+|   < EXITFOR : "EXIT" (<WS>)* "FOR" >
+|   < GOTO : "GOTO" >
+|   < ONERROR : "ON" (<WS>)* "ERROR" >
+|   < RESUMENEXT : "RESUME" (<WS>)* "NEXT" >
+|   < OPTIONEXPLICIT : "OPTION" (<WS>)* "EXPLICIT" >
+|   < IF : "IF" >
+|   < THEN : "THEN" >
+|   < ELSE : "ELSE" >
+|   < ELSEIF : "ELSEIF" >
+|   < ENDIF : "END" (<WS>)* "IF" >
+|   < DIM : "DIM" >
+|   < REDIM : "REDIM" >
+|   < PRESERVE : "PRESERVE" >
+|   < SET : "SET" >
+|   < IS : "IS" >
+|   < MOD : "MOD" >
+|   < NOT : "NOT" >
+|   < AND : "AND" >
+|   < OR : "OR" >
+|   < XOR : "XOR" >
+|   < EQV : "EQV" >
+|   < IMP : "IMP" >
+|   < FOR : "FOR" >
+|   < TO : "TO" >
+|   < STEP : "STEP" >
+|   < NEXT : "NEXT" >
+|   < IN : "IN" >
+|   < EACH : "EACH" >
+|   < CALL : "CALL" >
+|   < SUB : "SUB" >
+|   < FUNCTION : "FUNCTION" >
+|   < ENDSUB : "END" (<WS>)* "SUB" >
+|   < ENDFUNCTION : "END" (<WS>)* "FUNCTION" >
+|   < BYVAL : "BYVAL" >
+|   < BYREF : "BYREF" >
+|   < DO : "DO" >
+|   < UNTIL : "UNTIL" >
+|   < LOOP : "LOOP" >
+|   < WHILE : "WHILE" >
+|   < WEND : "WEND" >
+|   < CONST : "CONST" >
+|   < PUBLIC : "PUBLIC" >
+|   < PRIVATE : "PRIVATE" >
+|   < SELECTCASE : "SELECT" (<WS>)* "CASE" >
+|   < ENDSELECT : "END" (<WS>)* "SELECT" >
+|   < CASE : "CASE" >
+|   < CASEELSE : "CASE" (<WS>)* "ELSE" >
+|   < IDENTIFIER : (["a"-"z","0"-"9"])(["a"-"z","0"-"9","_"])* >
+|   < #WS : " " | "\t" | <CONTINUE> >
+}
+
+SPECIAL_TOKEN :
+{
+    < COMMENT : "'" (~["\n","\n"])* >
+|   < CONTINUE : "_" ( ( " " | "\t" )* <NL> )* >
+}
+
+SKIP :
+{
+    " "
+|   "\t"
+}
+
+Node WholeFile() :
+{
+    Node n;
+}
+{
+    n = BlockList() <EOF> { return n; }
+}
+
+void NL() : {}
+{
+    <NL> | <SEMI>
+}
+
+Node HTMLNode(DebugContext dbg) :
+{
+    Token t;
+    Node n;
+}
+{   
+    t = <HTML> { t.fillDebugContext(dbg); return new HTMLNode(t.image); }
+|   <OUTPUT> t = <EQ> n = ExprNode()
+    {
+        if (dbg == null) dbg = new DebugContext();
+        t.fillDebugContext(dbg);
+        return new OutputNode(n, dbg);
+    }
+}
+
+BlockNode BlockList() :
+{
+    BlockNode bn = new BlockNode();
+    Node n, x;
+    DebugContext dbg;
+}
+{
+    (   { dbg = new DebugContext(); }
+        n = ScriptNode(dbg) NL() { bn.append(n, dbg); }
+    |   <REMARK> NL()
+    |   { dbg = new DebugContext(); }
+        x = HTMLNode(dbg) { bn.append(x, dbg); }
+    |   NL() 
+    ) *
+    { return bn; }
+}
+
+Node BlockNode() :
+{
+    BlockNode bn = new BlockNode();
+    Node n;
+    DebugContext dbg;
+}
+{
+    (
+        { dbg = new DebugContext(); }
+        n = ScriptNode(dbg) { bn.append(n, dbg); }
+    |   <REMARK>
+    |   { dbg = new DebugContext(); }
+        n = HTMLNode(dbg) { bn.append(n, dbg); }
+    ) ( LOOKAHEAD(1)
+        <SEMI> 
+        { dbg = new DebugContext(); }
+        (
+            n = ScriptNode(dbg) { bn.append(n, dbg); }
+        |   n = HTMLNode(dbg) { bn.append(n, dbg); }
+        )
+    ) *
+    {   return bn; }
+}
+
+Node ScriptNode(DebugContext dbg) :
+{
+    Node n;
+    NumberNode nn;
+    Token t;
+}
+{
+    n = GetIndexOrSetValueNode(dbg) { return n; }
+|   n = ConditionalNode(dbg) { return n; }
+|   n = DefineIdentNode(dbg) { return n; }
+|   n = ForNode(dbg) { return n; }
+|   n = SubDefinitionNode(dbg) { return n; }
+|   n = DoNode(dbg) { return n; }
+|   n = ConstDefinitionNode(dbg) { return n; }
+|   n = PrivateStuffNode(dbg) { return n; }
+|   n = PublicStuffNode(dbg) { return n; }
+|   n = SelectNode(dbg) { return n; }
+|   t = <EXITFUNCTION>
+        { t.fillDebugContext(dbg);
+          return new ThrowExceptionNode(new AspExitFunctionException()); }
+|   t = <EXITSUB>
+        { t.fillDebugContext(dbg);
+          return new ThrowExceptionNode(new AspExitSubException()); }
+|   t = <EXITDO>
+        { t.fillDebugContext(dbg);
+          return new ThrowExceptionNode(new AspExitDoException()); }
+|   t = <EXITFOR>
+        { t.fillDebugContext(dbg);
+          return new ThrowExceptionNode(new AspExitForException()); }
+|   t = <ONERROR>
+        { t.fillDebugContext(dbg); }
+    (
+        <RESUMENEXT>
+            { return new OnErrorNode(); }
+    |   <GOTO> nn = NumberNode()
+        { return new OnErrorNode(nn); }
+    )
+|   t = <OPTIONEXPLICIT>
+        { t.fillDebugContext(dbg);
+          return new OptionExplicitNode(); }
+}
+
+IdentNode IdentNode() :
+{
+    IdentNode i;
+}
+{
+    i = CtxIdentNode(null) { return i; }
+}
+
+IdentNode CtxIdentNode(DebugContext dbg) :
+{
+    Token t;
+}
+{
+    t = <IDENTIFIER> { t.fillDebugContext(dbg); return new IdentNode(t.image); }
+}
+
+NumberNode NumberNode() :
+{
+    Token t;
+}
+{
+    t = <INTEGER> { return new NumberNode(new Integer(t.image)); }
+|   t = <DOUBLE> { return new NumberNode(new Double(t.image)); }
+|   t = <HEXSEQUENCE> { return new NumberNode(new Integer((int)parseHexSequence(t.image))); }
+}
+
+StringNode StringNode() :
+{
+    Token t;
+}
+{
+    t = <STRING> { return StringNode.fromStringToken(t.image); }
+}
+
+Node ExprNode() :
+{
+    Node n;
+}
+{
+    n = ImpNode() { return n; }
+}
+
+IdentNode LExprField() :
+{
+    Token t;
+}
+{
+    t = <DOT> { return new IdentNode(t.image); }
+}
+
+void CommaVarListNode(VarListNode v) :
+{
+    Node n;
+}
+{
+    ( <COMMA> { n = null; }
+        [ n = ExprNode() ]
+        { v.append(n); }
+    )+
+}
+
+VarListNode LExprFunction() :
+{
+    Node n;
+    VarListNode v = new VarListNode();
+}
+{
+    <LPAREN> (
+        n = ExprNode() { v.append(n); } [ CommaVarListNode(v) ] <RPAREN>
+    |   { v.append(null); } CommaVarListNode(v) <RPAREN>
+    |   <RPAREN>
+    ) { return v; }
+}
+
+Node LExprNode(DebugContext dbg) :
+{
+    Node n;
+    IdentNode i;
+    VarListNode v;
+}
+{
+    n = CtxIdentNode(dbg) (
+        i = LExprField()
+        { n = new GetFieldNode(n, i); }
+    |   
+        v = LExprFunction()
+        { n = new GetIndexNode(n, v, true); }
+    )* { return n; }
+}
+
+VarListNode VarListNode() :
+{
+    VarListNode v = new VarListNode();
+    Node n = null;
+}
+{
+    n = ExprNode() { v.append(n); n = null; }
+        ( <COMMA> [ LOOKAHEAD(1) n = ExprNode() ] { v.append(n); n = null; } )*
+    {
+        return v;
+    }
+}
+
+VarListNode OptionalVarListNode() :
+{
+    VarListNode n;
+}
+{
+    n = VarListNode() { return n; }
+|   { return new VarListNode(); }
+}
+
+Node GetIndexOrSetValueNode(DebugContext dbg) :
+{
+    Node n, p;
+    VarListNode v;
+}
+{
+    n = LExprNode(dbg)
+        [   <EQ> p = ExprNode()
+            { return new SetValueNode(n, p, false); }
+        |   
+            {
+                if (!(n instanceof GetIndexNode))
+                    n = new GetIndexNode(n, new VarListNode());
+                v = ((GetIndexNode)n).getExpression();
+                ((GetIndexNode)n).setFunction(false);
+            }
+            ( CommaVarListNode(v)
+            |   p = ExprNode() { v.append(p); } [ CommaVarListNode(v) ]
+            )
+        ]
+    { return n; }
+|   <SET> n = LExprNode(dbg) <EQ> p = ExprNode()
+    { return new SetValueNode(n, p, true); }
+|   <CALL> n = LExprNode(dbg)
+    {
+        if (!(n instanceof GetIndexNode)) {
+            n = new GetIndexNode(n, new VarListNode());
+        }
+        v = ((GetIndexNode)n).getExpression();
+    }
+        [ CommaVarListNode(v)
+        |   p = ExprNode() { v.append(p); } [ CommaVarListNode(v) ]
+        ]
+    {
+        ((GetIndexNode)n).setFunction(false);
+        return n;
+    }
+}
+
+Node ElseNode() :
+{
+    Node i, n, e = null;
+    Token t;
+    DebugContext dbg = new DebugContext();
+}
+{
+    t = <ELSEIF> i = ExprNode() <THEN> n = BlockList()
+        [ e = ElseNode() ]
+        { t.fillDebugContext(dbg);
+          return new ConditionalNode(i, n, e, dbg); }
+|   <ELSE> n = BlockList() { return n; }
+}
+
+Node ConditionalNode(DebugContext dbg) :
+{
+    Node n;
+    Node s = null;
+    Node e = null;
+    Token t;
+    if (dbg == null) dbg = new DebugContext();
+}
+{
+    t = <IF> { t.fillDebugContext(dbg); }
+        n = ExprNode() <THEN> (
+        s = BlockNode()
+            [ LOOKAHEAD(1) <ELSE> [ e = BlockNode() ] ]
+            [ LOOKAHEAD(1) <ENDIF> ]
+    |   NL() s = BlockList() [ e = ElseNode() ] <ENDIF> )
+        { return new ConditionalNode(n, s, e, dbg); }
+}
+
+Node DefineIdentNode(DebugContext dbg) :
+{
+    Node n;
+    Token t;
+}
+{
+    t = <DIM> { t.fillDebugContext(dbg); }
+        n = DimensionListNode() { return n; }
+|   t = <REDIM> { t.fillDebugContext(dbg); }
+        n = RedimensionListNode() { return n; }
+}
+
+VarListNode NumberListNode() : 
+{
+    VarListNode v = new VarListNode();
+    NumberNode n;
+}
+{
+    n = NumberNode() { v.append(n); }
+    (   <COMMA> n = NumberNode() { v.append(n); }
+    )* { return v; }
+}
+
+Node DimensionNode(DebugContext dbg) :  /* XXX */
+{
+    IdentNode i;
+    VarListNode v = null;
+}
+{
+    i = CtxIdentNode(dbg) [ <LPAREN> [ v = NumberListNode() ] <RPAREN> ]
+        { if (v == null) return new DefineIdentNode(i);
+            else return new DefineIdentArrayNode(i, v); }
+}
+
+Node DimensionListNode() : 
+{
+    BlockNode b = new BlockNode();
+    Node n;
+    DebugContext dbg;
+}
+{
+    { dbg = new DebugContext(); }
+    n = DimensionNode(dbg) { b.append(n, dbg); }
+    (   { dbg = new DebugContext(); }
+        <COMMA> n = DimensionNode(dbg) { b.append(n, dbg); }
+    )*
+    { return b; }
+}
+
+Node RedimensionNode(DebugContext dbg) :
+{
+    IdentNode i;
+    VarListNode v;
+}
+{
+    i = CtxIdentNode(dbg) <LPAREN> v = OptionalVarListNode() <RPAREN>
+    { return new RedimNode(i, v, false); }
+|   <PRESERVE> i = CtxIdentNode(dbg) <LPAREN> v = OptionalVarListNode() <RPAREN>
+    { return new RedimNode(i, v, true); }
+}
+
+Node RedimensionListNode() :
+{
+    BlockNode b = new BlockNode();
+    Node n;
+    DebugContext dbg;
+}
+{
+    { dbg = new DebugContext(); }
+    n = RedimensionNode(dbg) { b.append(n, dbg); }
+    (   { dbg = new DebugContext(); }
+        <COMMA> n = RedimensionNode(dbg) { b.append(n, dbg); }
+    )*
+    { return b; }
+}
+
+Node ImpNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = EqvNode()
+    (
+        <IMP> r = EqvNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.IMP); }
+    ) *
+    { return n; }
+}
+
+Node EqvNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = XorNode()
+    (
+        <EQV> r = XorNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.EQV); }
+    ) *
+    { return n; }
+}
+
+Node XorNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = OrNode()
+    (
+        <XOR> r = OrNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.XOR); }
+    ) *
+    { return n; }
+}
+
+Node OrNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = AndNode()
+    (
+        <OR> r = AndNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.OR); }
+    ) *
+    { return n; }
+}
+
+Node AndNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = NotNode()
+    (
+        <AND> r = NotNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.AND); }
+    ) *
+    { return n; }
+}
+
+Node NotNode() :
+{
+    Node n;
+}
+{
+    <NOT> n = ComparisonNode()
+    {   return new ArithmeticNode(n, null, ArithmeticNode.NOT); }
+|   n = ComparisonNode()
+    {   return n; }
+}
+
+Node ComparisonNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = ConcatNode()
+    (
+        <IS> r = ConcatNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.IS); }
+    |   <GE> r = ConcatNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.GE); }
+    |   <LE> r = ConcatNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.LE); }
+    |   <GT> r = ConcatNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.GT); }
+    |   <LT> r = ConcatNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.LT); }
+    |   <NE> r = ConcatNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.NE); }
+    |   <EQ> r = ConcatNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.EQ); }
+    ) *
+    { return n; }
+}
+
+Node ConcatNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = PlusMinusNode()
+    (
+        <CONCAT> r = PlusMinusNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.CONCAT); }
+    ) *
+    { return n; }
+}
+
+Node PlusMinusNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = ModNode()
+    (
+        <PLUS> r = ModNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.PLUS); }
+    |   <MINUS> r = ModNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.MINUS); }
+    ) *
+    { return n; }
+}
+
+Node ModNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = IntDivNode()
+    (
+        <MOD> r = IntDivNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.MOD); }
+    ) *
+    { return n; }
+}
+
+Node IntDivNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = MultDivNode()
+    (
+        <INTDIV> r = MultDivNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.INTDIV); }
+    ) *
+    { return n; }
+}
+
+Node MultDivNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = UnaryMinusNode()
+    (
+        <MULT> r = UnaryMinusNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.MULT); }
+    |   <DIV> r = UnaryMinusNode()
+            { n = new ArithmeticNode(n, r, ArithmeticNode.DIV); }
+    ) *
+    { return n; }
+}
+
+Node UnaryMinusNode() :
+{
+    Node n;
+}
+{
+    <MINUS> n = ExpNode()
+    {   return new ArithmeticNode(null, n, ArithmeticNode.MINUS); }
+|   n = ExpNode()
+    {   return n; }
+}
+
+Node ExpNode() :
+{
+    Node r;
+    Node n;
+}
+{
+    n = ConstNode()
+    (
+        <EXP> r = ConstNode()
+        { n = new ArithmeticNode(n, r, ArithmeticNode.EXP); }
+    ) *
+    { return n; }
+}
+
+Node ConstNode() :
+{
+    Node n;
+    Token t;
+}
+{
+    n = StringNode() { return n; }
+|   n = NumberNode() { return n; }
+|   n = LExprNode(null) { return n; }
+|   <LPAREN> n = ImpNode() <RPAREN> { return n; }
+}
+
+Node ForNode(DebugContext dbg) :
+{
+    IdentNode i;
+    Node a, b;
+    BlockNode bl;
+    Node s = null;
+    Token t;
+}
+{
+    t = <FOR> { t.fillDebugContext(dbg); }  (
+        i = IdentNode() <EQ> a = ExprNode() <TO> b = ExprNode() 
+            [ <STEP> s = ExprNode() ] NL()
+            bl = BlockList()
+        <NEXT>
+        {
+            if (s != null)
+                return new ForNode(i, a, b, bl, s, null);
+            else
+                return new ForNode(i, a, b, bl, null);
+        }
+    |   <EACH> i = IdentNode() <IN> a = ExprNode() NL()
+            bl = BlockList()
+        <NEXT>
+        {
+            return new ForEachNode(i, a, bl);
+        }
+    )
+}   
+
+Node SubParamEntryNode() :
+{
+    IdentNode i;
+}
+{
+    <BYVAL> i = IdentNode() { return i; }
+|   <BYREF> i = IdentNode() { return new ByRefNode(i); }
+|   i = IdentNode() { return new ByRefNode(i); }
+}
+
+VarListNode SubParamNode() :
+{
+    Node n;
+    VarListNode v = new VarListNode();
+}
+{
+    [
+        <LPAREN>
+        [
+            n = SubParamEntryNode()
+                { v.append(n); }
+            (
+                <COMMA> n = SubParamEntryNode()
+                { v.append(n); }
+            )*
+        ]
+        <RPAREN>
+    ] { return v; }
+}
+
+Node SubDefinitionNode(DebugContext dbg) : 
+{
+    IdentNode i;
+    VarListNode v;
+    BlockNode bl;
+    Token t;
+}
+{
+    t = <SUB> i = IdentNode() v = SubParamNode() NL()
+        bl = BlockList()
+    <ENDSUB>
+        { t.fillDebugContext(dbg);
+          return new SubDefinitionNode(i, v, bl, false); }
+|   t = <FUNCTION> i = IdentNode() v = SubParamNode() NL()
+        bl = BlockList()
+    <ENDFUNCTION>
+        { t.fillDebugContext(dbg);
+          return new SubDefinitionNode(i, v, bl, true); }
+}
+
+Node DoNode(DebugContext dbg) :
+{
+    Node n, e;
+    BlockNode bl;
+    Token t;
+}
+{
+    t = <DO> { t.fillDebugContext(dbg); } (
+        <UNTIL> e = ExprNode() NL()
+            bl = BlockList()
+        <LOOP>
+        { return new DoNode(e, bl, false, true); }
+    |   t = <WHILE> { t.fillDebugContext(dbg); } 
+            e = ExprNode() NL()
+            bl = BlockList()
+        <LOOP>
+        { return new DoNode(e, bl, false, false); }
+    |   NL()
+            bl = BlockList()
+        <LOOP> (
+            <WHILE> e = ExprNode()
+            { return new DoNode(e, bl, true, false); }
+        |   <UNTIL> e = ExprNode()
+            { return new DoNode(e, bl, true, true); }
+        )
+    )
+|   t = <WHILE> { t.fillDebugContext(dbg); } e = ExprNode() NL()
+        bl = BlockList()
+    <WEND> { return new DoNode(e, bl, false, false); }
+}
+
+Node PrivateStuffNode(DebugContext dbg) :
+{
+    Token t;
+    Node n;
+}
+{
+    t = <PRIVATE> { t.fillDebugContext(dbg); }
+    (
+        n = ConstDefinitionNode(null) { return n; }
+    |   n = SubDefinitionNode(null) { return n; }
+    |   n = DimensionListNode() { return n; }
+    )
+}
+
+Node PublicStuffNode(DebugContext dbg) :
+{
+    Token t;
+    Node n;
+}
+{
+    t = <PUBLIC> { t.fillDebugContext(dbg); }
+    (
+        n = ConstDefinitionNode(null) { return n; }
+    |   n = SubDefinitionNode(null) { return n; }
+    )
+}
+
+Node ConstDefinitionNode(DebugContext dbg) :
+{
+    Node n;
+    Token t;
+}
+{
+    t = <CONST> { t.fillDebugContext(dbg); }
+        n = ConstListNode(true) { return n; }
+}
+
+BlockNode ConstListNode(boolean isPrivate) :
+{
+    BlockNode b = new BlockNode();
+    Node e;
+    IdentNode i;
+    DebugContext dbg;
+}
+{
+    { dbg = new DebugContext(); }
+    i = CtxIdentNode(dbg) <EQ> e = ExprNode()
+        { b.append(new ConstNode(i, e, isPrivate), dbg); }
+    (
+        { dbg = new DebugContext(); }
+        <COMMA> i = CtxIdentNode(dbg) <EQ> e = ExprNode()
+        { b.append(new ConstNode(i, e, isPrivate), dbg); }
+    ) *
+    { return b; }
+}
+
+Node SelectNode(DebugContext dbg) :
+{
+    Node e;
+    VarListNode v;
+    Token t;
+}
+{
+    t = <SELECTCASE> e = ExprNode() (NL())+
+        v = CaseStatementsNode()
+    <ENDSELECT>
+    { t.fillDebugContext(dbg);
+      return new SelectNode(e, v); }
+}
+
+VarListNode CaseStatementsNode() :
+{
+    VarListNode v = new VarListNode();
+    CaseNode c;
+}
+{
+    ( c = CaseNode() { v.append(c); } )*
+    { return v; }
+}
+
+CaseNode CaseNode() :
+{
+    VarListNode v;
+    BlockNode bl;
+}
+{
+    <CASE> v = VarListNode() bl = BlockList()
+    { return new CaseNode(v, bl); }
+|   <CASEELSE> bl = BlockList()
+    { return new CaseNode(null, bl); }
+}
+

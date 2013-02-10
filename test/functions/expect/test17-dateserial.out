@@ -1,0 +1,9 @@
+<!-- Test DateSerial function.
+-->
+
+DateSerial(1999, 10, 3) = 
+	10/3/1999<br>
+DateSerial(99, 10, 3) = 
+	10/3/1999<br>
+DateSerial(1990 - 10, 8 - 2, 1 - 1) = 
+	5/31/1980<br>

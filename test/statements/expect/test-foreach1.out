@@ -1,0 +1,37 @@
+Test For Each statement:
+<HR>
+
+Dim A <br>
+
+A = Array(1, 2, 3) <br>
+
+For Each Val In A <br>
+  Val =           1<br>
+Next              <br>
+  Val =           2<br>
+Next              <br>
+  Val =           3<br>
+Next              <br>
+
+Set A = Server.CreateObject("Scripting.Dictionary")
+	<br>
+
+Call A.Add("One", 1) <br>
+Call A.Add("Two", 2) <br>
+Call A.Add("Three", 3) <br>
+
+For Each Val In A <br>
+  Val =           One<br>
+Next              <br>
+  Val =           Two<br>
+Next              <br>
+  Val =           Three<br>
+Next              <br>
+
+For Each Val In A <br>
+  Val = One<br>
+  If A(Val) &gt; 1 then <br>
+Next <br>
+  Val = Two<br>
+  If A(Val) &gt; 1 then <br>
+    Exit For <br>

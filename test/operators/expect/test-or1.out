@@ -1,0 +1,23 @@
+Test logical OR operator:
+<hr>
+
+True or True =         True<br>
+True or False =        True<br>
+True or Null =         True<br>
+False or True =        True<br>
+False or False =       False<br>
+IsNull(False or Null) =True<br>
+Null or True =         True<br>
+IsNull(Null or False) =True<br>
+IsNull(Null or Null) = True<br>
+1 or 1 =               1<br>
+&amp;HFF or &amp;H10 = 255<br>
+&amp;H33 or &amp;H11 = 51<br>
+Null or &amp;HFF =     255<br>
+Null or &amp;H01 =     1<br>
+IsNull(Null or &amp;H00) =     True<br>
+TRUE or &amp;H11 = -1<br>
+FALSE or &amp;H11 = 17<br>
+&amp;H11 or TRUE = -1<br>
+&amp;H11 or FALSE = 17<br>
+

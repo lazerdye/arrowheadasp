@@ -1,0 +1,11 @@
+Test string concat operator:
+<hr>
+
+"a" &amp; "b" =           ab<br>
+"a" &amp; Null =          a<br>
+Null &amp; "b" =          b<br>
+IsNull(Null &amp; Null) = True<br>
+"a" &amp; Empty =         a<br>
+Empty &amp; "b" =         b<br>
+Empty &amp; Empty =       <br>
+

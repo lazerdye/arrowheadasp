@@ -1,0 +1,13 @@
+<!-- Test Fix function.
+-->
+
+Fix(0.1) = 
+	0<br>
+Fix(0.5) = 
+	0<br>
+Fix(0.6) = 
+	0<br>
+Fix(1.9) = 
+	1<br>
+Fix(-8.4) = 
+	-8<br>

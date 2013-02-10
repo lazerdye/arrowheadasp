@@ -1,0 +1,50 @@
+<!-- Test InStrRev function.
+-->
+
+InStrRev("", "hello") = 
+	0<br>
+
+InStrRev("blah", "") = 
+	4<br>
+
+InStrRev("thisissometext", "aba") = 
+	0<br>
+
+InStrRev("thisisabanquettest", "aba") = 
+	7<br>
+
+InStrRev("thisisabanquettestabachacha", "aba") = 
+	19<br>
+
+InStrRev("quacksaidtheduck", "quack") = 
+	1<br>
+
+InStrRev("quacksaidtheduck", "duck") = 
+	13<br>
+
+InStrRev("thisisabanquettestabachacha", "aba", 26) = 
+	19<br>
+
+InStrRev("thisisabanquettestabachacha", "aba", -1) = 
+	19<br>
+
+InStrRev("thisisabanquettestabachacha", "aba", 6) = 
+	0<br>
+
+InStrRev("thisisabanquettestabachacha", "aba", 7) = 
+	0<br>
+
+InStrRev("thisisabanquettestabachacha", "aba", 8) = 
+	0<br>
+
+InStrRev("hErEiSaCaSeOfThEcAsEs", "seofth", 15) =
+	0<br>
+
+InStrRev("hErEiSaCaSeOfThEcAsEs", "seofth", 15, vbBinaryCompare) =
+	0<br>
+
+InStrRev("hErEiSaCaSeOfThEcAsEs", "seofth", 15, vbTextCompare) =
+	10<br>
+
+InStrRev("thisisabanquettest", "aba", 100) = 
+	0<br>

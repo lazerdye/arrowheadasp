@@ -1,0 +1,5 @@
+<!-- Test StrReverse function.
+-->
+
+StrReverse("12345") = 54321<br>
+StrReverse("") = <br>

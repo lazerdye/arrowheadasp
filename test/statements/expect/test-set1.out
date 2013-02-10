@@ -1,0 +1,14 @@
+Test Set Statement
+
+<pre>
+Dim A, B 
+
+Set A = Server.CreateObject("Scripting.Dictionary") 
+
+A.Add "Hello", "There" 
+
+B = A("Hello") 
+
+B = There
+
+</pre>

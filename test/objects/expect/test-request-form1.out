@@ -1,0 +1,4 @@
+Testing simple form values.
+
+Request.Form("valuea") = one<br>
+Request.Form("valueb") = two<br>

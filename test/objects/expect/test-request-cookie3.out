@@ -1,0 +1,6 @@
+Test getting a cookie.
+
+Hello = ^Third=The%26third%26one&Second=The%2[Dd]second%2[Dd]one&First=First\+One|First=First\+One&Second=The%2[Dd]second%2[Dd]one&Third=The%26third%26one$<br>
+Hello("First") = First One<br>
+Hello("Second") = The-second-one<br>
+Hello("Third") = The&third&one<br>

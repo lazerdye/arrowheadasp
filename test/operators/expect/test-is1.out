@@ -1,0 +1,31 @@
+Test IS operator.
+<hr>
+
+
+
+DictA is DictA          True<br>
+DictA is DictB          False<br>
+DictA is DictC          True<br>
+DictA is Nothing        False<br>
+DictA is NothingA       False<br>
+DictB is DictA          False<br>
+DictB is DictB          True<br>
+DictB is DictC          False<br>
+DictB is Nothing        False<br>
+DictB is NothingA       False<br>
+DictC is DictA          True<br>
+DictC is DictB          False<br>
+DictC is DictC          True<br>
+DictC is Nothing        False<br>
+DictC is NothingA       False<br>
+Nothing is DictA        False<br>
+Nothing is DictB        False<br>
+Nothing is DictC        False<br>
+Nothing is Nothing      True<br>
+Nothing is NothingA     True<br>
+NothingA is DictA       False<br>
+NothingA is DictB       False<br>
+NothingA is DictC       False<br>
+NothingA is Nothing     True<br>
+NothingA is NothingA    True<br>
+

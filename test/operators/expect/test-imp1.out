@@ -1,0 +1,13 @@
+Test logical implication operator:
+<hr>
+
+True imp True =         True<br>
+True imp False =        False<br>
+IsNull(True imp Null) =	True<br>
+False imp True =        True<br>
+False imp False =       True<br>
+False imp Null =        True<br>
+Null imp True =         True<br>
+IsNull(Null imp False) =True<br>
+IsNull(Null imp Null) = True<br>
+

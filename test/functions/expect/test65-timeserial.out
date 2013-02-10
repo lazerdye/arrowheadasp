@@ -1,0 +1,8 @@
+<!-- Test TimeSerial function.
+-->
+
+TimeSerial(10, 30, 40) = 10:30:40 AM<br>
+TimeSerial(20, 30, 40) = 8:30:40 PM<br>
+TimeSerial(0, 0, 0) = 12:00:00 AM<br>
+TimeSerial(23, 59, 59) = 11:59:59 PM<br>
+TimeSerial(12 - 6, -15, 0) = 5:45:00 AM<br>

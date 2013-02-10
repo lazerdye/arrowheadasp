@@ -1,0 +1,32 @@
+Test server variables
+
+Request.ServerVariables("REQUEST_METHOD") = 
+    <%= Request.ServerVariables("REQUEST_METHOD") %><br>
+Request.ServerVariables("URL") = 
+    <%= Request.ServerVariables("URL") %><br>
+Request.ServerVariables("SERVER_PROTOCOL") = 
+    <%= Request.ServerVariables("SERVER_PROTOCOL") %><br>
+Request.ServerVariables("SCRIPT_NAME") = 
+    <%= Request.ServerVariables("SCRIPT_NAME") %><br>
+Request.ServerVariables("PATH_INFO") = 
+    <%= Request.ServerVariables("PATH_INFO") %><br>
+Request.ServerVariables("PATH_TRANSLATED") = 
+    <%= Request.ServerVariables("PATH_TRANSLATED") %><br>
+Request.ServerVariables("QUERY_STRING") = 
+    <%= Request.ServerVariables("QUERY_STRING") %><br>
+Request.ServerVariables("CONTENT_LENGTH") = 
+    <%= Request.ServerVariables("CONTENT_LENGTH") %><br>
+Request.ServerVariables("SERVER_NAME") = 
+    <%= Request.ServerVariables("SERVER_NAME") %><br>
+Request.ServerVariables("SERVER_PORT") = 
+    <%= Request.ServerVariables("SERVER_PORT") %><br>
+Request.ServerVariables("REMOTE_USER") = 
+    <%= Request.ServerVariables("REMOTE_USER") %><br>
+Request.ServerVariables("REMOTE_ADDR") = 
+    <%= Request.ServerVariables("REMOTE_ADDR") %><br>
+Request.ServerVariables("REMOTE_HOST") = 
+    <%= Request.ServerVariables("REMOTE_HOST") %><br>
+Request.ServerVariables("AUTH_TYPE") = 
+    <%= Request.ServerVariables("AUTH_TYPE") %><br>
+Request.ServerVariables("HTTP_X_FAKE_HEADER") = 
+    <%= Request.ServerVariables("HTTP_X_FAKE_HEADER") %><br>

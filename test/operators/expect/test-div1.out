@@ -1,0 +1,14 @@
+Test Division operator:
+<hr>
+
+1 / 2 = 0.5<br>
+"1" / 2 = 0.5<br>
+1 / "2" = 0.5<br>
+"1" / "2" = 0.5<br>
+3 / 2 = 1.5<br>
+IsNull(Null / 2) = True<br>
+IsNull(1 / Null) = True<br>
+IsNull(Null / Null) = True<br>
+Empty / 1 = 0<br>
+
+

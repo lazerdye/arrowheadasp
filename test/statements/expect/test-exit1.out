@@ -1,0 +1,29 @@
+Test Exit statements.
+<br>
+Exit Do<br>
+<br>
+Do While 1  <br>
+    In Loop, Before Exit<br>
+    Exit Do <br>
+<br>
+Exit For<br>
+<br>
+For i = 1 to 100    <br>
+    In Loop, Before Exit<br>
+    Exit For        <br>
+<br>
+Exit Function<br>
+<br>
+Function MyFunc     <br>
+<br>
+MyFunc <br>
+    In Function, Before Exit<br>
+    Exit Function   <br>
+<br>
+Exit Sub<br>
+<br>
+Sub MySub      <br>
+<br>
+MySub <br>
+    In Sub, Before Exit<br>
+    Exit Sub    <br>

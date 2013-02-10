@@ -1,0 +1,23 @@
+Test logical AND operator:
+<hr>
+
+True and True =         True<br>
+True and False =        False<br>
+IsNull(True and Null) =	True<br>
+False and True =        False<br>
+False and False =       False<br>
+False and Null =        False<br>
+IsNull(Null and True) = True<br>
+Null and False =        False<br>
+IsNull(Null and Null) = True<br>
+1 and 1 =               1<br>
+&amp;HFF and &amp;H10 = 16<br>
+&amp;H33 and &amp;H11 = 17<br>
+IsNull(Null and &amp;HFF) =     True<br>
+IsNull(Null and &amp;H01) =     True<br>
+Null and &amp;H00 =     0<br>
+&amp;H33 and TRUE = 51<br>
+&amp;H33 and FALSE = 0<br>
+TRUE and &amp;H33 = 51<br>
+FALSE and &amp;H33 = 0<br>
+

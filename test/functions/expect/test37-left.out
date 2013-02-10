@@ -1,0 +1,7 @@
+<!-- Test Left function.
+-->
+
+Left("abcdef", 1) = a<br>
+Left("abcdef", 0) = <br>
+Left("abcdef", 8) = abcdef<br>
+IsNull(Left(Null, 2)) = True<br>

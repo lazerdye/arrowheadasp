@@ -1,0 +1,17 @@
+<!-- Test LTrim function.
+-->
+
+LTrim("nospaces") = "nospaces"<br>
+LTrim("one space") = "one space"<br>
+LTrim("   ") = ""<br>
+LTrim(" space") = "space"<br>
+LTrim("  space") = "space"<br>
+LTrim("   space") = "space"<br>
+LTrim("   one space") = "one space"<br>
+LTrim("space ") = "space "<br>
+LTrim("space  ") = "space  "<br>
+LTrim("space   ") = "space   "<br>
+LTrim(" space ") = "space "<br>
+LTrim("  space  ") = "space  "<br>
+LTrim("   space   ") = "space   "<br>
+IsNull(LTrim(Null)) = True

@@ -1,0 +1,8 @@
+Test storing application objects using different methods.
+
+Application.Contents.Item("A") = 1 <br>
+Application.Contents("B") = 2 <br>
+Application("C") = 3 <br>
+Application("A") = 1<br>
+Application("B") = 2<br>
+Application("C") = 3<br>

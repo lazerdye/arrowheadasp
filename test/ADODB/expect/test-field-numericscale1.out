@@ -1,0 +1,7 @@
+
+Here is the test of Field NumericScale.<br>
+NumericScale("StringField"): ^255|0$<br>
+    NumericScale("IntField"): ^255|0$<br>
+
+
+The End.

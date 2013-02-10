@@ -1,0 +1,7 @@
+
+Here is the test of Field Name.<br>
+Name("StringField"): ^[Ss]tring[Ff]ield$<br>
+    Name("IntField"): ^[Ii]nt[Ff]ield$<br>
+
+
+The End.

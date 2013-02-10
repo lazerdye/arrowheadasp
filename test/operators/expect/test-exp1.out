@@ -1,0 +1,13 @@
+Test Exponent operator:
+<hr>
+
+2 ^ 3 = 8<br>
+"2" ^ 3 = 8<br>
+2 ^ "3" = 8<br>
+"2" ^ "3" = 8<br>
+2 ^ 0.5 = 1.414213562373^[0-9]*$<br>
+IsNull(Null ^ 3) = True<br>
+IsNull(2 ^ Null) = True<br>
+IsNull(Null ^ Null) = True<br>
+
+

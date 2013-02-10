@@ -1,0 +1,29 @@
+Test Inequality Operator
+<br>
+
+1 <= 1 = True<br>
+1 <= 2 = True<br>
+2 <= 1 = False<br>
+"0" <= 0 = True<br>
+"1" <= 1 = True<br>
+1 <= "1" = True<br>
+"a" <= "a" = True<br>
+"a" <= "b" = True<br>
+"b" <= "a" = False<br>
+"abba" <= "ab" = False<br>
+"ab" <= "abba" = True<br>
+0 <= "0" = True<br>
+Empty <= "a" = True<br>
+"a" <= Empty = False<br>
+Empty <= "" = True<br>
+"" <= Empty = True<br>
+Empty <= 0 = True<br>
+0 <= Empty = True<br>
+Empty <= Empty = True<br>
+IsNull(Null <= "a") = True<br>
+IsNull("a" <= Null) = True<br>
+IsNull(Null <= Null) = True<br>
+IsNull(Null <= "") = True<br>
+IsNull("" <= Null) = True<br>
+IsNull(Null <= 0) = True<br>
+IsNull(0 <= Null) = True<br>

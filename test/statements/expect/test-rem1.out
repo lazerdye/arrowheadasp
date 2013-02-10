@@ -1,0 +1,8 @@
+Test of the REM statement, and derivitaves.
+
+REM Some Remark <br>
+' Some Remark <br>
+Response.Write("Statement") ' Some Comment <br>
+    Statement<br>
+Response.Write("More") : REM Some Comment <br>
+    More<br>

@@ -1,0 +1,53 @@
+<!-- Test InStr function.
+-->
+
+InStr("", "hello") = 
+	0<br>
+
+InStr(NULL, "hello") = 
+	<br>
+
+InStr("blah", "") = 
+	1<br>
+
+InStr("blah", NULL) = 
+	<br>
+
+InStr("thisissometext", "aba") = 
+	0<br>
+
+InStr("thisisabanquettest", "aba") = 
+	7<br>
+
+InStr("thisisabanquettestabachacha", "aba") = 
+	7<br>
+
+InStr("quacksaidtheduck", "quack") = 
+	1<br>
+
+InStr("quacksaidtheduck", "duck") = 
+	13<br>
+
+InStr(1, "thisisabanquettestabachacha", "aba") = 
+	7<br>
+
+InStr(6, "thisisabanquettestabachacha", "aba") = 
+	7<br>
+
+InStr(7, "thisisabanquettestabachacha", "aba") = 
+	7<br>
+
+InStr(8, "thisisabanquettestabachacha", "aba") = 
+	19<br>
+
+InStr(1, "hErEiSaCaSeOfThEcAsEs", "seofth") =
+	0<br>
+
+InStr(1, "hErEiSaCaSeOfThEcAsEs", "seofth", vbBinaryCompare) =
+	0<br>
+
+InStr(1, "hErEiSaCaSeOfThEcAsEs", "seofth", vbTextCompare) =
+	10<br>
+
+InStr(100, "thisisabanquettest", "aba") = 
+	0<br>

@@ -1,0 +1,11 @@
+ERROR main com.tripi.asp.AspTest - File test/functions/test05.2-cbool.asp line 6: Cast Exception: java.lang.NumberFormatException: hello there
+File test/functions/test05.2-cbool.asp line 6: Cast Exception: java.lang.NumberFormatException: hello there
+	at com.tripi.asp.Types.coerceToInteger(Unknown Source)
+	at com.tripi.asp.Types.coerceToBoolean(Unknown Source)
+	at com.tripi.asp.GlobalScope$CBoolFunction.execute(Unknown Source)
+	at com.tripi.asp.AbstractFunctionNode.execute(Unknown Source)
+	at com.tripi.asp.GetIndexNode.execute(Unknown Source)
+	at com.tripi.asp.OutputNode.execute(Unknown Source)
+	at com.tripi.asp.BlockNode.execute(Unknown Source)
+	at com.tripi.asp.AspThread.run(Unknown Source)
+	at java.lang.Thread.run(Thread.java:498)

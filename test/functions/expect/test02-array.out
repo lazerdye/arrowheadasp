@@ -1,0 +1,10 @@
+<!-- Test ARRAY function.
+  Input is a comma-delimited list of initial values.
+-->
+
+Dim A <br>
+A = Array("a", "b", "c", "d") <br>
+A(0) = a<br>
+A(1) = b<br>
+A(2) = c<br>
+A(3) = d<br>

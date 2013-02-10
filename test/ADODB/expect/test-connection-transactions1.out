@@ -1,0 +1,77 @@
+
+Here is a test of transactions.<br>
+
+
+Testing transactions.
+
+Opening DB...
+
+
+List what's in the table initially...
+StringField: "First Row", IntField: "1"<br>
+StringField: "Second Row", IntField: "2"<br>
+StringField: "Third Row", IntField: "3"<br>
+StringField: "Fourth Row", IntField: "4"<br>
+StringField: "Fifth Row", IntField: "5"<br>
+StringField: "Sixth Row", IntField: "6"<br>
+StringField: "Seventh Row", IntField: "7"<br>
+StringField: "Eigth Row", IntField: "8"<br>
+StringField: "Ninth Row", IntField: "9"<br>
+StringField: "Tenth Row", IntField: "10"<br>
+StringField: "Eleventh Row", IntField: "11"<br>
+StringField: "Twelfth Row", IntField: "12"<br>
+StringField: "Thirteenth Row", IntField: "13"<br>
+StringField: "Fourteenth Row", IntField: "14"<br>
+StringField: "Fifteenth Row", IntField: "15"<br>
+
+
+Begin a transaction...<br>
+TransID: 1
+
+Add some elements to table...
+
+
+
+List what's in the table now...
+StringField: "First Row", IntField: "1"<br>
+StringField: "Second Row", IntField: "2"<br>
+StringField: "Third Row", IntField: "3"<br>
+StringField: "Fourth Row", IntField: "4"<br>
+StringField: "Fifth Row", IntField: "5"<br>
+StringField: "Sixth Row", IntField: "6"<br>
+StringField: "Seventh Row", IntField: "7"<br>
+StringField: "Eigth Row", IntField: "8"<br>
+StringField: "Ninth Row", IntField: "9"<br>
+StringField: "Tenth Row", IntField: "10"<br>
+StringField: "Eleventh Row", IntField: "11"<br>
+StringField: "Twelfth Row", IntField: "12"<br>
+StringField: "Thirteenth Row", IntField: "13"<br>
+StringField: "Fourteenth Row", IntField: "14"<br>
+StringField: "Fifteenth Row", IntField: "15"<br>
+StringField: "A", IntField: "101"<br>
+StringField: "B", IntField: "102"<br>
+
+
+Rollback...
+
+
+
+List what's in the table after rollback...
+StringField: "First Row", IntField: "1"<br>
+StringField: "Second Row", IntField: "2"<br>
+StringField: "Third Row", IntField: "3"<br>
+StringField: "Fourth Row", IntField: "4"<br>
+StringField: "Fifth Row", IntField: "5"<br>
+StringField: "Sixth Row", IntField: "6"<br>
+StringField: "Seventh Row", IntField: "7"<br>
+StringField: "Eigth Row", IntField: "8"<br>
+StringField: "Ninth Row", IntField: "9"<br>
+StringField: "Tenth Row", IntField: "10"<br>
+StringField: "Eleventh Row", IntField: "11"<br>
+StringField: "Twelfth Row", IntField: "12"<br>
+StringField: "Thirteenth Row", IntField: "13"<br>
+StringField: "Fourteenth Row", IntField: "14"<br>
+StringField: "Fifteenth Row", IntField: "15"<br>
+
+
+Close the database...

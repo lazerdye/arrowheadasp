@@ -1,0 +1,11 @@
+<!-- Test Minute function.
+-->
+
+Minute("12:23:01") = 
+	23<br>
+Minute("12:00:01") = 
+	0<br>
+Minute("12:59:01") = 
+	59<br>
+IsNull(Minute(NULL)) = 
+	True<br>

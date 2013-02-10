@@ -1,0 +1,25 @@
+<!-- Test Weekday function.
+-->
+
+Weekday("1/01/2001") = 2<br>
+Weekday("1/02/2001") = 3<br>
+Weekday("1/03/2001") = 4<br>
+Weekday("1/04/2001") = 5<br>
+Weekday("1/05/2001") = 6<br>
+Weekday("1/06/2001") = 7<br>
+Weekday("1/07/2001") = 1<br>
+Weekday("1/03/2001", vbSunday) = 4<br>
+Weekday("1/03/2001", vbMonday) = 3<br>
+Weekday("1/03/2001", vbTuesday) = 2<br>
+Weekday("1/03/2001", vbWednesday) = 1<br>
+Weekday("1/03/2001", vbThursday) = 7<br>
+Weekday("1/03/2001", vbFriday) = 6<br>
+Weekday("1/03/2001", vbSaturday) = 5<br>
+vbSunday = 1<br>
+vbMonday = 2<br>
+vbTuesday = 3<br>
+vbWednesday = 4<br>
+vbThursday = 5<br>
+vbFriday = 6<br>
+vbSaturday = 7<br>
+IsNull(Weekday(NULL)) = True<br>

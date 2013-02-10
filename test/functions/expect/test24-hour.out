@@ -1,0 +1,11 @@
+<!-- Test Hour function.
+-->
+
+Hour("12:23:01") = 
+	12<br>
+Hour("18:23:01") = 
+	18<br>
+Hour("3:23:01pm") = 
+	15<br>
+IsNull(Hour(NULL)) = 
+	True<br>

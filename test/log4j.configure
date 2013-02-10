@@ -1,0 +1,8 @@
+log4j.rootCategory=warn, Console
+
+log4j.appender.Console=org.apache.log4j.ConsoleAppender
+
+log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+log4j.appender.Console.layout.ConversionPattern=%p %t %c - %m%n
+
+

@@ -1,0 +1,6 @@
+Setting the content type.
+
+Response.ContentType = "text/plain"
+    <br>
+
+ContentType = text/plain<br>

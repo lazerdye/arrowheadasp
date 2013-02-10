@@ -1,0 +1,11 @@
+<!-- Test Second function.
+-->
+
+Second("12:23:01") = 
+	1<br>
+Second("12:23:00") = 
+	0<br>
+Second("12:23:59") = 
+	59<br>
+IsNull(Second(NULL)) = 
+	True<br>

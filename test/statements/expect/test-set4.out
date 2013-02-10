@@ -1,0 +1,11 @@
+Test Set Statement
+
+<pre>
+Set A = Server.CreateObject("Scripting.Dictionary") 
+
+IsObject(A) = True
+
+Set A = Nothing 
+
+IsObject(A) = True
+</pre>

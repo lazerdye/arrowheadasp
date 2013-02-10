@@ -1,0 +1,29 @@
+<!-- Test IsDate function.
+-->
+
+Dim VarInt, VarDouble, VarString, VarDate, VarObj, VarArray
+	<br>
+Dim VarNull, VarUninitialized
+	<br>
+
+VarInt = 1 <br>
+VarDouble = 0.123 <br>
+VarString = "Hello" <br>
+VarDate = DateSerial(1, 25, 1982) <br>
+Set VarObj = CreateObject("Scripting.Dictionary")
+	<br>
+VarArray = Array(1, 2, 3, 4)
+	<br>
+VarNull = NULL
+	<br>
+
+IsDate(VarInt) = False<br>
+IsDate(VarDouble) = False<br>
+IsDate(VarString) = False<br>
+IsDate(VarDate) = True<br>
+IsDate(VarObj) = False<br>
+IsDate(VarArray) = False<br>
+IsDate(VarNull) = False<br>
+IsDate(VarUninitialized) = False<br>
+IsDate("2/23/01") = True<br>
+IsDate("July 45, 01") = True<br>

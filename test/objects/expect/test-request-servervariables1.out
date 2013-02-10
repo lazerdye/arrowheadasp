@@ -1,0 +1,32 @@
+Test server variables
+
+Request.ServerVariables("REQUEST_METHOD") = 
+    GET<br>
+Request.ServerVariables("URL") = 
+    ^.*$/objects/test-request-servervariables1.asp<br>
+Request.ServerVariables("SERVER_PROTOCOL") = 
+    HTTP/1.1<br>
+Request.ServerVariables("SCRIPT_NAME") = 
+    ^.*$/objects/test-request-servervariables1.asp<br>
+Request.ServerVariables("PATH_INFO") = 
+    ^.*$<br>
+Request.ServerVariables("PATH_TRANSLATED") = 
+    ^.*$<br>
+Request.ServerVariables("QUERY_STRING") = 
+    daquery<br>
+Request.ServerVariables("CONTENT_LENGTH") = 
+    0<br>
+Request.ServerVariables("SERVER_NAME") = 
+    ^.+$<br>
+Request.ServerVariables("SERVER_PORT") = 
+    ^[0-9]+$<br>
+Request.ServerVariables("REMOTE_USER") = 
+    <br>
+Request.ServerVariables("REMOTE_ADDR") = 
+    ^.+$<br>
+Request.ServerVariables("REMOTE_HOST") = 
+    ^.+$<br>
+Request.ServerVariables("AUTH_TYPE") = 
+    <br>
+Request.ServerVariables("HTTP_X_FAKE_HEADER") = 
+    Fake data<br>

@@ -1,0 +1,29 @@
+Test Greater Than Operator
+<br>
+
+1 > 1 = False<br>
+1 > 2 = False<br>
+2 > 1 = True<br>
+"0" > 0 = False<br>
+"1" > 1 = False<br>
+1 > "1" = False<br>
+"a" > "a" = False<br>
+"a" > "b" = False<br>
+"b" > "a" = True<br>
+"abba" > "ab" = True<br>
+"ab" > "abba" = False<br>
+0 > "0" = False<br>
+Empty > "a" = False<br>
+"a" > Empty = True<br>
+Empty > "" = False<br>
+"" > Empty = False<br>
+Empty > 0 = False<br>
+0 > Empty = False<br>
+Empty > Empty = False<br>
+IsNull(Null > "a") = True<br>
+IsNull("a" > Null) = True<br>
+IsNull(Null > Null) = True<br>
+IsNull(Null > "") = True<br>
+IsNull("" > Null) = True<br>
+IsNull(Null > 0) = True<br>
+IsNull(0 > Null) = True<br>

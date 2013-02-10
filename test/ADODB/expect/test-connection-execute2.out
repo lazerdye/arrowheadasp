@@ -1,0 +1,35 @@
+
+Test of Connection.Execute, returning ResultSet<br>
+StringField = First Row<br>
+IntField = 1<br>
+StringField = Second Row<br>
+IntField = 2<br>
+StringField = Third Row<br>
+IntField = 3<br>
+StringField = Fourth Row<br>
+IntField = 4<br>
+StringField = Fifth Row<br>
+IntField = 5<br>
+StringField = Sixth Row<br>
+IntField = 6<br>
+StringField = Seventh Row<br>
+IntField = 7<br>
+StringField = Eigth Row<br>
+IntField = 8<br>
+StringField = Ninth Row<br>
+IntField = 9<br>
+StringField = Tenth Row<br>
+IntField = 10<br>
+StringField = Eleventh Row<br>
+IntField = 11<br>
+StringField = Twelfth Row<br>
+IntField = 12<br>
+StringField = Thirteenth Row<br>
+IntField = 13<br>
+StringField = Fourteenth Row<br>
+IntField = 14<br>
+StringField = Fifteenth Row<br>
+IntField = 15<br>
+
+
+The End.

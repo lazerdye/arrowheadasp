@@ -1,0 +1,19 @@
+Test Addition operator:
+<hr>
+
+1 + 1 = 2<br>
+"1" + 1 = 2<br>
+1 + "1" = 2<br>
+"1" + "1" = 11<br>
+1.5 + 1.5 = 3<br>
+IsNull(Null + 1) = True<br>
+IsNull(1 + Null) = True<br>
+IsNull(Null + Null) = True<br>
+CDate("12/10/99") + 1 = 12/11/1999<br>
+CDate("12/10/99") + 22 = 1/1/2000<br>
+1 + CDate("12/31/02") = 1/1/2003<br>
+Empty + 1 = 1<br>
+1 + Empty = 1<br>
+Empty + Empty = 0<br>
+
+

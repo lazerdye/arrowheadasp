@@ -1,0 +1,23 @@
+<!-- Test DatePart function.
+-->
+
+DatePart("yyyy", "01/02/03 4:56:07") = 
+	2003<br>
+DatePart("q", "01/02/03 4:56:07") = 
+	1<br>
+DatePart("m", "01/02/03 4:56:07") = 
+	1<br>
+DatePart("y", "01/02/03 4:56:07") = 
+	2<br>
+DatePart("d", "01/02/03 4:56:07") = 
+	2<br>
+DatePart("w", "01/02/03 4:56:07") = 
+	5<br>
+DatePart("ww", "01/02/03 4:56:07") = 
+	1<br>
+DatePart("h", "01/02/03 4:56:07") = 
+	4<br>
+DatePart("n", "01/02/03 4:56:07") = 
+	56<br>
+DatePart("s", "01/02/03 4:56:07") = 
+	7<br>

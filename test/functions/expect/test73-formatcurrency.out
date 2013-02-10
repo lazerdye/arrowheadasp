@@ -1,0 +1,35 @@
+<!-- Test FormatDateTime function.
+-->
+
+Dim TheDollars <br>
+
+TheDollars = "-0.9876" <br>
+
+FormatCurrency(TheDollars) =
+	-0.99<br>
+
+FormatCurrency(TheDollars, 2) =
+	-0.99<br>
+
+FormatCurrency(TheDollars, 4) =
+	-0.9876<br>
+
+FormatCurrency(TheDollars, 2, true) =
+	-0.99<br>
+
+FormatCurrency(TheDollars, 2, false) =
+	-.99<br>
+
+FormatCurrency(TheDollars, 2, true, true) =
+	(0.99)<br>
+
+FormatCurrency(TheDollars, 2, true, false) =
+	-0.99<br>
+
+TheDollars = "-123456789" <br>
+
+FormatCurrency(TheDollars, 2, true, true, 0) =
+	(123456789.00)<br>
+
+FormatCurrency(TheDollars, 2, true, true, 3) =
+	(123,456,789.00)<br>

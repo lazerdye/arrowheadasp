@@ -1,0 +1,13 @@
+<!-- Test Year function.
+-->
+
+Year("6/25/75") = 
+	1975<br>
+Year("6/25/00") = 
+	2000<br>
+Year("6/25/99") = 
+	1999<br>
+Year("6/25/2050") = 
+	2050<br>
+IsNull(Year(NULL)) = 
+	True<br>

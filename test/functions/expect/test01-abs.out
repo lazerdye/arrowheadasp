@@ -1,0 +1,15 @@
+<!-- Test ABS function.
+   If input is number: return abs(number)
+   If input is NULL: return NULL
+   If input is undefined: return 0
+   If input is string or other type: coerce to number, return abs(number)
+-->
+
+abs(10) = 10<br>
+abs(0) = 0<br>
+abs(-1) = 1<br>
+abs(0.5) = 0.5<br>
+abs(-0.5) = 0.5<br>
+abs(NULL) = <br>
+abs(UndefinedVar) = 0<br>
+abs("-1.0") = 1<br>

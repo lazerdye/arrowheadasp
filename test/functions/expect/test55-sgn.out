@@ -1,0 +1,8 @@
+<!-- Test Sgn function.
+-->
+
+Sgn(0) = 0<br>
+Sgn(1) = 1<br>
+Sgn(-1) = -1<br>
+Sgn(123) = 1<br>
+Sgn(-212) = -1<br>

@@ -1,0 +1,4 @@
+Testing simple form values.
+
+Request.QueryString("valuea") = one<br>
+Request.QueryString("valueb") = two<br>

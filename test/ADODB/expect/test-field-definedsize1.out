@@ -1,0 +1,7 @@
+
+Here is the test of Field DefinedSize.<br>
+DefinedSize("StringField"): 64<br>
+    DefinedSize("IntField"): ^4|11$<br>
+
+
+The End.

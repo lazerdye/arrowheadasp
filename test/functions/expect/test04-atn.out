@@ -1,0 +1,7 @@
+<!-- Test ATN function.
+	Returns the arc-tangent of a number.
+-->
+
+ATN(10) = 1.4711^[0-9]*$<br>
+ATN(0.3) = 0.2914^[0-9]*$<br>
+ATN("0.3") = 0.2914^[0-9]*$<br>

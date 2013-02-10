@@ -1,0 +1,7 @@
+Test binary write.
+
+Request.TotalBytes = 39<br>
+Result = Request.BinaryRead(Request.TotalBytes)
+    <br>
+Response.BinaryWrite(Result)
+    some=data&some=more+data&even=more+data<br>

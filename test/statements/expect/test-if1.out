@@ -1,0 +1,38 @@
+Test If Statements
+<br>
+Single Line Form, Simple:<br>
+<br>
+if 1 = 1 then Response.Write("Yes")
+    Yes<br>
+<br>
+if 1 = 1 then Response.Write("Yes") else Response.Write("No")
+    Yes<br>
+<br>
+Single Line Form, multiple statements:<br>
+<br>
+if 1 = 1 then Response.Write("Yes ") : Response.Write("Sir") else Response.Write("No")
+    Yes Sir<br>
+<br>
+Block Form, Simple:<br>
+<br>
+if "a" = "a" then           <br>
+    Response.Write("Yes")   Yes<br>
+end if                      <br>
+<br>
+Block Form, If/Else:<br>
+<br>
+if "a" = "b" then           <br>
+    Response.Write("No")    No<br>
+end if                      <br>
+<br>
+Block Form, If/Elseif/Else:<br>
+<br>
+if "a" = "b" then           <br>
+    Response.Write("Yes 2") Yes 2 <br>
+else                        <br>
+<br>
+Block Form, missing NL on Else:<br>
+<br>
+If "a" = "b" then           Yes 2<br>
+else Response.Write("No")   <br>
+<br>

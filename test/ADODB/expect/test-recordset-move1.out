@@ -1,0 +1,21 @@
+
+Here is the test of RecordSet AbsolutePosition.<br>
+Value: Eleventh Row / 11<br />
+        AbsolutePosition: 11<br />
+        BOF: False<br />
+        EOF: False<br />
+Value: Fifteenth Row / 15<br />
+        AbsolutePosition: 15<br />
+        BOF: False<br />
+        EOF: False<br />
+Value: Fifth Row / 5<br />
+        AbsolutePosition: 5<br />
+        BOF: False<br />
+        EOF: False<br />
+Value: First Row / 1<br />
+        AbsolutePosition: 1<br />
+        BOF: False<br />
+        EOF: False<br />
+
+
+The End.

@@ -1,0 +1,7 @@
+<!-- Test LCase function.
+-->
+
+LCase("HeLlO tHeRe") = hello there<br>
+LCase("this is a test") = this is a test<br>
+LCase("THIS IS A TEST") = this is a test<br>
+IsNull(LCase(NULL)) = True<br>

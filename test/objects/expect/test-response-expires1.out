@@ -1,0 +1,6 @@
+This page expires in ten minutes.
+
+
+
+Response.Expires = 10<br>
+Response.ExpiresAbolute = ^[0-9/ :APM]+$<br>

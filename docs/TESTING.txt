@@ -1,0 +1,116 @@
+ArrowHead ASP Server -- Testing Guide
+=====================================
+
+Testing ArrowHead
+-----------------
+ArrowHead includes an acceptance test suite to ensure that development on
+parts of ArrowHead does not break older, working features.
+
+Requirements for Testing
+------------------------
+* Everything required for compiling.
+
+  See COMPILING.txt and INSTALLING.txt, obtain all of the required and optional
+  JAR files and place them into arrowhead/lib
+
+* Installed and running PostgreSQL server
+
+  For testing the ADODB interface, a working PostgreSQL server is required.
+  See "Preparing the Database" below for more information.
+
+* PostgreSQL JDBC driver
+
+  The driver can be downloaded from:
+
+  http://jdbc.postgresql.org/download.html
+
+  This release is tested against version pg74.213.jdbc4.jar.
+
+
+Preparing the Database
+----------------------
+Install PostgreSQL, make sure it is listening for TCP/IP connections. Add
+the user "test" with the password "test". Create the database "asptest", and
+execute the following as the "test" user in the database "asptest":
+
+CREATE TABLE test (
+    IntField    INTEGER PRIMARY KEY,
+    StringField VARCHAR(64) NOT NULL,
+    NullableStringField VARCHAR(64),
+    NullableIntField    INTEGER
+);
+
+INSERT INTO test (StringField, IntField) VALUES ('First Row', 1);
+INSERT INTO test (StringField, IntField) VALUES ('Second Row', 2);
+INSERT INTO test (StringField, IntField) VALUES ('Third Row', 3);
+INSERT INTO test (StringField, IntField) VALUES ('Fourth Row', 4);
+INSERT INTO test (StringField, IntField) VALUES ('Fifth Row', 5);
+INSERT INTO test (StringField, IntField) VALUES ('Sixth Row', 6);
+INSERT INTO test (StringField, IntField) VALUES ('Seventh Row', 7);
+INSERT INTO test (StringField, IntField) VALUES ('Eigth Row', 8);
+INSERT INTO test (StringField, IntField) VALUES ('Ninth Row', 9);
+INSERT INTO test (StringField, IntField) VALUES ('Tenth Row', 10);
+INSERT INTO test (StringField, IntField) VALUES ('Eleventh Row', 11);
+INSERT INTO test (StringField, IntField) VALUES ('Twelfth Row', 12);
+INSERT INTO test (StringField, IntField) VALUES ('Thirteenth Row', 13);
+INSERT INTO test (StringField, IntField) VALUES ('Fourteenth Row', 14);
+INSERT INTO test (StringField, IntField) VALUES ('Fifteenth Row', 15);
+
+Note about other databases:
+
+The ADODB interface is meant to be used against other databases. However,
+it has been only tested against PostgreSQL version 7.4.2. The ADODB code
+uses features available only with JDBC3 drivers, so this rules out many
+JDBC-capable databases, such as HSQLDB. However, the most common ADODB
+functions should be available with any database, including HSQLDB, Mysql, etc.
+
+Running the Test Suite
+----------------------
+
+After installing and preparing the database, to prepare the webapp test
+environment, execute:
+
+$ ant prep-test
+
+This will set up arrowhead/test as a suitable webapp for testing. Configure
+your servlet server, such as Tomcat, to point the /asptest directory to this
+webapp. Here is an example section from server.xml to configure this:
+
+<Service name="Catalina">
+  <Connector port="8080"/>
+
+  <Engine name="Catalina" defaultHost="localhost">
+    <Host name="localhost" appBase="webapps">
+      <Context path="/asptest" docBase="/the/location/of/arrowhead/test"/>
+    </Host>
+  </Engine>
+</Service>
+
+With this configuration, when you browse to:
+
+http://localhost:8080/asptest/misc/test-comments1.asp
+
+You should see the text:
+
+Here is a test of single quote comments. HiHi
+
+
+Running the Acceptance Tests
+----------------------------
+
+With everything in place, just run:
+
+$ ant test
+
+to produce a testing report in report/html/junit-noframes.html.
+
+
+Testing against Servlet Server on different machine
+---------------------------------------------------
+
+To test against a servlet server on a different machine, edit build.xml and
+change the line:
+
+<property name="asptest.server" value="localhost:8080"/>
+
+to reflect which server to test against.

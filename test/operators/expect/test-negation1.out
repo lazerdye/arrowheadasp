@@ -1,0 +1,26 @@
+Test Subtraction operator:
+<hr>
+
+1 - 1 = 0<br>
+"1" - 1 = 0<br>
+1 - "1" = 0<br>
+"1" - "1" = 0<br>
+1.5 - 1.5 = 0<br>
+- 2 = -2<br>
+- "3" = -3<br>
+- 4.5 = -4.5<br>
+CDate("1/1/01") - 10 = 12/22/2000<br>
+CDate("1/10/01") - CDate("1/1/01") =
+	9<br>
+CDate("1/10/01") - CDate("1/20/01") =
+	-10<br>
+IsNull(Null - 1) = True<br>
+IsNull(1 - Null) = True<br>
+IsNull(Null - Null) = True<br>
+IsNull(- Null) = True<br>
+Empty - 1 = -1<br>
+1 - Empty = 1<br>
+Empty - Empty = 0<br>
+- Empty = 0<br>
+
+

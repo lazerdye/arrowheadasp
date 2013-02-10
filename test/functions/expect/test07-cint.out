@@ -1,0 +1,19 @@
+<!-- Test CInt function.
+	Rounds to nearest number. If fractional part is exactly 0.5,
+	rounds to the nearest even number.
+-->
+
+CINT("12") = 12<br>
+CINT(0.1) = 0<br>
+CINT(0.5) = 0<br>
+CINT(0.7) = 1<br>
+CINT(1.0) = 1<br>
+CINT(1.5) = 2<br>
+CINT(1.7) = 2<br>
+CINT(2.5) = 2<br>
+CINT(3.5) = 4<br>
+CINT(-0.5) = 0<br>
+CINT(-1.5) = -2<br>
+CINT(-2.5) = -2<br>
+CINT(TRUE) = -1<br>
+CINT(FALSE) = 0<br>

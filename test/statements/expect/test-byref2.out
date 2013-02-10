@@ -1,0 +1,14 @@
+Test the byref statement, and calling by reference in general.
+
+Before:
+VarA: VarAGlobal<br>
+VarB: VarBGlobal<br>
+VarC: VarCGlobal<br>
+After execute with call:
+VarA: VarAInFunction<br>
+VarB: VarBGlobal<br>
+VarC: VarCInFunction<br>
+After execute without call (no parenthesis):
+VarA: VarAInFunction<br>
+VarB: VarBGlobal<br>
+VarC: VarCInFunction<br>

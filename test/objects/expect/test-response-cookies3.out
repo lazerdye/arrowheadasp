@@ -1,0 +1,6 @@
+Test Response.Cookies, simple cookies
+
+Response.Cookies("Hello")("First") = "One"
+    <br>
+Response.Cookies("Hello")("Second") = "Two"
+    <br>

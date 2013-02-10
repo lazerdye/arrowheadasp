@@ -1,0 +1,96 @@
+Changes from 0.2.2
+------------------
+* Update to work with JavaCC 3.x
+* Made all of the nodes serializable.
+* Fixed "cannot access field marked public" error.
+* JC: Added FormatCurrency,
+* Added Long Java/ASP type conversions.
+* Added support for OSCache page caching.
+
+Changes from 0.2.1
+------------------
+* Handle logical AND/OR/XOR statements.
+* Enhanced exception handling
+* Added vbNewline which is \n, and changed vbcrlf to \r\n
+* Added RecordSet.GetRows
+* Added Fields.Count
+* Added initial MSXML2.* support contributed by Jim Horner - Thanks!
+* Fixed bugs appearing under Windows 98.
+
+Changes from 0.2.0
+------------------
+* Added large set of ADODB tests
+* Fleshed out ADODB.Connection, ADODB.Command, and ADODB.RecordSet
+* ADODB.RecordSet supports updatable record sets.
+* ADODB.Field supports more functions.
+* Implemented scoring mechanism to detect best match for function calling
+* Added test for DIM to detect dim-ming existing variables.
+* Added some more tests (8bit, byref)
+* Added mechanism to allow call-by-reference to Java objects.
+* Allow passing single-dimension ASP Array objects as Java array objects.
+* Re-worked sessions to be compatible with Servlet sessions.
+* Fix ON_SESSION_END to work after server re-start.
+* Fix error with hanging connections.
+
+Changes from 0.1.0
+------------------
+* Completely redesigned parser replacing JavaCup with JavaCC
+* Changed from using servlet-relative paths to using absolute paths exclusively
+* Added AspRuntimeException class for use within a tokenizer's getNextToken
+  function call.
+* Fixed bugs with identifier and continuation (thanks to Calvin Leung).
+* Updated documentation to reflect parser change.
+
+Changed from 0.0.4
+------------------
+* Completed Session.Contents interface and most of Session object
+* Complete most of Request object
+* Added %unicode statement to vbscript.lex
+* Comparison operands return NULL if NULL is used in a param
+* AspCollection has initialize() function to handle read-only collections
+* Added exception handler to properly set the status on error
+* Uses AspCollection for QueryString, Form, and ServerVariables
+* Uses the servlet function getResource() to obtain URL to servlet resources
+  so that it can be embedded into EJB containers.
+
+Changes from 0.0.3
+------------------
+* Removed Scope object and replaced with AspContext object
+* Handle OnPageStart and OnPageEnd for objects created through
+  Server.CreateObject
+* Changed IdentNode object to be case insensitive for inclusion into hashtables
+* Implemented include virtual
+* Specification for global.asa file in WEB-INF changed, and is now optional
+* INSTALL document updated
+* Added PackedCharArrayNode to pass char[] types around as normal ASP objects.
+* Added PackedByteArrayNode to pass byte[] types around as normal ASP objects.
+  This is needed for Response.BinaryWrite and Request.BinaryRead functions
+* Implemented Response.Expires, Response.ExpiresAbsolute, Response.AddHeader,
+  and Response.BinaryWrite
+* Implemented checks for proper use of SET keyword. (Should this be optional?)
+* Completed Response.Cookie support
+* Created initial OnError support
+* Completed most of the Application object
+* Added basic implementation of CDONTS.NewMail
+* Added pluggable exception handling
+* Fixed DOS file format support which was broken
+
+Changes from 0.0.2-20020428
+---------------------------
+* Began implementing unit test suite using JUnit
+* Added equals() and hashValue() functions to NullNode so that equality
+  tests work, and added use of Constants.nullNode.equals() to test for null
+  values.
+* Improved cookie support
+* Added regression tests for VBScript statements
+* Removed old testing code from AspTest so that ArrowHead can build
+  against Apache's servlet API.
+* Implemented erase function.
+* Fix for bug 561681 - DOS files not readable.
+* Many more bug fixes
+
+Changes from 0.0.2-20020418
+---------------------------
+* Minor bug fixes
+* Re-wrote the installation notes to cover Apache Tomcat 4.x
+

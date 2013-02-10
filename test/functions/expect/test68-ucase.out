@@ -1,0 +1,7 @@
+<!-- Test UCase function.
+-->
+
+UCase("HeLlO tHeRe") = HELLO THERE<br>
+UCase("this is a test") = THIS IS A TEST<br>
+UCase("THIS IS A TEST") = THIS IS A TEST<br>
+IsNull(UCase(NULL)) = True<br>

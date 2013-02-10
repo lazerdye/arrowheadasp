@@ -1,0 +1,71 @@
+ArrowHead ASP Server -- Compilation Guide
+=========================================
+
+About This Document
+-------------------
+This document contains information needed to compile ArrowHead. The
+instructions are simple and cover mostly obtaining the required libraries.
+
+Requirements
+------------
+* Everything in the "Requirements" section of INSTALL.txt
+
+Copy the corresponding jar files into arrowhead/lib.
+
+* ANT
+
+Ant is required to build ArrowHead. It is available here:
+
+http://ant.apache.org/
+
+This release it built with ant 1.6.0.
+
+If you can find a package for your distribution, things will be much more 
+convienient, as you can just type "ant" to run it.
+
+* JavaCC
+
+Grab JavaCC from:
+
+https://javacc.dev.java.net/servlets/ProjectDocumentList
+
+Copy javacc.jar from javacc-x.x/bin/lib to arrowhead/lib.
+
+This release has been tested against version 3.2.
+
+* Servlet API
+
+Grab the servlet API from the Tomcat installation, I.E.:
+
+/usr/share/tomcat/common/lib/servlet-api.jar
+
+If you are using another servlet server, the servlet api jar file should
+be found somewhere with that server. If not, download Tomcat and copy it from
+there. It is only needed to build ArrowHead, not to run it.
+
+* JUnit
+
+JUnit can be obtained from:
+
+http://www.junit.org/index.htm
+
+This release is tested with version 3.8.1.
+
+Building ArrowHead
+------------------
+
+Once all of the jar files are copied into arrowhead/lib, just type:
+
+$ ant dist
+
+to build the jar files. If any libraries are missing, the build will fail with
+a description of what's missing.
+
+The final jar files will be found in dist/lib.
+
+If you wish to build a set of release files (jar, source, documents) type:
+
+$ ant release
+
+And all of the releasable components will be found in dist/release.
+

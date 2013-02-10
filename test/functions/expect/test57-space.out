@@ -1,0 +1,7 @@
+<!-- Test Space function.
+-->
+
+Space(0) = ""<br>
+Space(1) = " "<br>
+Space(2) = "  "<br>
+Space(20) = "                    "<br>

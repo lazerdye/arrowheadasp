@@ -1,0 +1,16 @@
+
+Here is the test of basic ADODB functions.<br>
+Attributes: 0<br>
+    CommandTimeout: 30<br>
+    ConnectionString: ^.+$<br>
+    ConnectionTimeout: 15<br>
+    CursorLocation: 2<br>
+    DefaultDatabase: Wick2<br>
+    IsolationLevel: 4096<br>
+    Mode: 0<br>
+    Provider: MSDASQL.1<br>
+    State: 1<br>
+    Version: 2.5<br>
+    
+
+The End.

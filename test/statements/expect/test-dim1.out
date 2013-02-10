@@ -1,0 +1,34 @@
+Test Dim statement:
+
+Dim VarA, VarB(2), VarC(3, 4), VarD(5, 6, 7)
+	<br>
+
+VarA = <br>
+
+UBound(VarB) = 2<br>
+
+UBound(VarC, 1) = 3<br>
+UBound(VarC, 2) = 4<br>
+
+UBound(VarD, 1) = 5<br>
+UBound(VarD, 2) = 6<br>
+UBound(VarD, 3) = 7<br>
+
+Sub TestSetANoDim <br>
+
+TestSetANoDim <br>
+  VarA = "Hello" <br>
+  VarA = Hello<br>
+End Sub <br>
+
+VarA = Hello<br>
+
+Sub TestSetADim <br>
+
+TestSetADim <br>
+  Dim VarA <br>
+  VarA = "Greetings" <br>
+  VarA = Greetings<br>
+End Sub <br>
+
+VarA = Hello<br>

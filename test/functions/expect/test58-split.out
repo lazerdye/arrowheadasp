@@ -1,0 +1,25 @@
+<!-- Test Split function.
+-->
+
+
+Dim Arr <br>
+Join(Split("This is a test"), ",") =
+	This,is,a,test<br>
+Join(Split("This is a test", "s"), ",") =
+	Thi, i, a te,t<br>
+Join(Split("This is a test", "s", -1), ",") =
+	Thi, i, a te,t<br>
+Join(Split("This is a test", "s", 0), ",") =
+	<br>
+Join(Split("This is a test", "s", 1), ",") =
+	This is a test<br>
+Join(Split("This is a test", "s", 2), ",") =
+	Thi, is a test<br>
+Join(Split("This is a test", "s", 5), ",") =
+	Thi, i, a te,t<br>
+Join(Split("ThIs iS a TeSt", "s", -1), ",") =
+	ThI, iS a TeSt<br>
+Join(Split("ThIs iS a TeSt", "s", -1, vbBinaryCompare), ",") =
+	ThI, iS a TeSt<br>
+Join(Split("ThIs iS a TeSt", "s", -1, vbTextCompare), ",") =
+	ThI, i, a Te,t<br>

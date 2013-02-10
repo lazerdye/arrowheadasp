@@ -1,0 +1,23 @@
+Test logical XOR operator:
+<hr>
+
+True xor True =         False<br>
+True xor False =        True<br>
+IsNull(True xor Null) = True<br>
+False xor True =        True<br>
+False xor False =       False<br>
+IsNull(False xor Null) =True<br>
+IsNull(Null xor True) = True<br>
+IsNull(Null xor False) =True<br>
+IsNull(Null xor Null) = True<br>
+1 xor 1 =               0<br>
+&amp;HFF xor &amp;H10 = 239<br>
+&amp;H33 xor &amp;H11 = 34<br>
+IsNull(Null xor &amp;HFF) =     True<br>
+IsNull(Null xor &amp;H01) =     True<br>
+IsNull(Null xor &amp;H00) =     True<br>
+&amp;11 xor TRUE = -18<br>
+&amp;11 xor FALSE = 17<br>
+TRUE xor &amp;11 = -18<br>
+FALSE xor &amp;11 = 17<br>
+

@@ -1,0 +1,162 @@
+ArrowHead ASP Server -- Installation Guide
+==========================================
+
+About This Document
+-------------------
+This document contains step-by-step instructions on converting a simple
+ASP application to ArrowHead. It assumes basic Linux knowledge, including
+installing packages, downloading binary distributions of projects, and
+manipulating files and directories.
+
+
+Requirements
+------------
+* JDK 1.4.2
+
+ArrowHead may run under 1.3.x or 1.5.x, but this release is tested under 1.4.2
+as distributed with SuSE 9.1. It can be found in one of these places:
+    http://java.sun.com
+    http://www.ibm.com/developerworks/java/jdk/
+or it might come with your distribution.
+
+* Java Servlet Server which supports Servlet SDK 2.3 or later
+
+ArrowHead is tested under Jakarta Tomcat, the current release is tested with
+version 5.0.19, as distributed with SuSE 9.1.
+
+* Log4j
+
+You can find the runtime files here:
+http://jakarta.apache.org/log4j/docs/download.html
+
+The current release is tested with version 1.2.8.
+
+* JRegex
+
+You can find the runtime files here:
+
+http://sourceforge.net/project/showfiles.php?group_id=39578
+
+The current release is tested with version 1.2_01
+
+* Java Activation Framework (JAF) and JavaMail API
+
+These libraries are required if you plan to use CDONTS for sending Email, or
+if you will be using Email notification for system errors. You can find
+JAF here:
+
+http://java.sun.com/products/javabeans/glasgow/jaf.html
+
+This release is tested with version 1.0.2.
+
+And JavaMail here:
+
+http://java.sun.com/products/javamail/
+
+This release is tested with version 1.3.1.
+
+GNU Classpath also has a version of JavaMail and JAF which may be usable
+under ArrowHead, but it does not currently contain releasable jar files and
+has not been tested.
+
+* JDom
+
+This library is required for the MSDOM interface. You can find it here:
+
+http://www.jdom.org/downloads/index.html
+
+The current release is tested with the Beta 9 version. It is safe to leave
+this out if you do not need the MSDOM interface.
+
+* OSCache
+
+This library is only required if you plan to use the OSCache script caching
+mechanism. It is safe to leave it out for basic installation. It can be 
+downloaded from here:
+
+http://www.opensymphony.com/oscache/download.html
+
+The current release is tested with the 2.0.2 version.
+
+* Patience
+
+This is ALPHA software, it is not feature complete, so there is a great 
+change you will run into problems. Please do not hesitate to contact the 
+author in case of a problem, I will try to help!
+
+
+Create a webapp directory
+-------------------------
+
+A webapp directory needs to be created for the ASP files and required
+libraries. This directory can be anywhere, but it would be simplest if
+this directory was made under the "webapps" subdirectory in the Tomcat 
+installation. In this example, Tomcat is installed in /usr/share/tomcat, so
+we make a subdirectory under the webapps directory (may have to be root for 
+this):
+
+$ cd /usr/share/tomcat/webapps
+$ mkdir aspfiles
+$ mkdir aspfiles/WEB-INF
+$ mkdir aspfiles/WEB-INF/lib
+
+Copy the web.xml file (sample downloadable from SourceForge project) into 
+aspfiles/WEB-INF:
+
+$ cp /home/user/downloads/web.xml /usr/share/tomcat/webapps/aspfiles/WEB-INF
+
+Copy required libraries
+-----------------------
+
+Copy over the required JAR files downloaded from the locations described above.
+At the minimum there should be:
+
+  aspfiles/WEB-INF/lib/arrowhead-0.x.x.jar
+  aspfiles/WEB-INF/lib/log4j-1.2.8.jar
+  aspfiles/WEB-INF/lib/jregex1.2.01.jar
+
+For CDONTS Email there should also be:
+
+  aspfiles/WEB-INF/lib/activation.jar
+  aspfiles/WEB-INF/lib/mail.jar
+
+For MSDOM interface there should also be:
+
+  aspfiles/WEB-INF/lib/jdom.jar
+
+For OSCache compiled script caching there should also be:
+
+  aspfiles/WEB-INF/lib/oscache-2.0.2-22Jan04.jar
+  aspfiles/WEB-INF/lib/commons-collections.jar
+  aspfiles/WEB-INF/lib/commons-logging.jar
+
+After these files are copied over, copy over the ASP files you require to:
+
+  aspfiles
+
+If there are no existing ASP files to copy over, or for a quick test, create
+the file "test.asp", and put the following into to:
+
+  <% Response.Write("Hello from ASP!") %>
+
+Re-start Tomcat, then browse to the ASP file created, for example:
+
+    http://localhost:8080/aspfiles/test.asp
+
+You should see just the text:
+
+  Hello from ASP!
+
+The web.xml sample distributed with ArrowHead contains mapping for default.asp,
+Default.asp, and index.asp as welcome files.
+
+Contacting for Support
+----------------------
+
+Please contact arrowhead_at_tripi.com for support and help, or use the
+SourceForge project tools at:
+
+http://arrowheadasp.sourceforge.net
+
+Good luck!
+

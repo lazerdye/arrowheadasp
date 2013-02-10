@@ -1,0 +1,13 @@
+<!-- Test ASC function.
+  Returns the character code of the first character.
+  ASCB() returns the value of the first byte of the string.
+  ASCW() returns the value of the first unicode character of the string.
+  TODO: Test Unicode characters
+-->
+
+ASC("This is a test") = 84<br>
+ASC(20+30) = 53<br>
+ASCB("This is a test") = 84<br>
+ASCB(20+30) = 53<br>
+ASCW("This is a test") = 84<br>
+ASCW(20+30) = 53<br>

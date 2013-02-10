@@ -1,0 +1,71 @@
+
+Here is the test of the RecordSet paging features.<br>
+AbsolutePosition: 1<br />
+    AbsolutePage: 1<br />
+    PageCount: 3<br />
+Value: First Row / 1<br>
+        AbsolutePosition: 1<br />
+        AbsolutePage: 1<br />
+        PageCount: 3<br />
+Value: Second Row / 2<br>
+        AbsolutePosition: 2<br />
+        AbsolutePage: 1<br />
+        PageCount: 3<br />
+Value: Third Row / 3<br>
+        AbsolutePosition: 3<br />
+        AbsolutePage: 1<br />
+        PageCount: 3<br />
+Value: Fourth Row / 4<br>
+        AbsolutePosition: 4<br />
+        AbsolutePage: 1<br />
+        PageCount: 3<br />
+Value: Fifth Row / 5<br>
+        AbsolutePosition: 5<br />
+        AbsolutePage: 1<br />
+        PageCount: 3<br />
+Value: Sixth Row / 6<br>
+        AbsolutePosition: 6<br />
+        AbsolutePage: 2<br />
+        PageCount: 3<br />
+Value: Seventh Row / 7<br>
+        AbsolutePosition: 7<br />
+        AbsolutePage: 2<br />
+        PageCount: 3<br />
+Value: Eigth Row / 8<br>
+        AbsolutePosition: 8<br />
+        AbsolutePage: 2<br />
+        PageCount: 3<br />
+Value: Ninth Row / 9<br>
+        AbsolutePosition: 9<br />
+        AbsolutePage: 2<br />
+        PageCount: 3<br />
+Value: Tenth Row / 10<br>
+        AbsolutePosition: 10<br />
+        AbsolutePage: 2<br />
+        PageCount: 3<br />
+Value: Eleventh Row / 11<br>
+        AbsolutePosition: 11<br />
+        AbsolutePage: 3<br />
+        PageCount: 3<br />
+Value: Twelfth Row / 12<br>
+        AbsolutePosition: 12<br />
+        AbsolutePage: 3<br />
+        PageCount: 3<br />
+Value: Thirteenth Row / 13<br>
+        AbsolutePosition: 13<br />
+        AbsolutePage: 3<br />
+        PageCount: 3<br />
+Value: Fourteenth Row / 14<br>
+        AbsolutePosition: 14<br />
+        AbsolutePage: 3<br />
+        PageCount: 3<br />
+Value: Fifteenth Row / 15<br>
+        AbsolutePosition: 15<br />
+        AbsolutePage: 3<br />
+        PageCount: 3<br />
+AbsolutePosition: -^.+$<br />
+    AbsolutePage: -^.+$<br />
+    PageCount: 3<br />
+
+
+The End.

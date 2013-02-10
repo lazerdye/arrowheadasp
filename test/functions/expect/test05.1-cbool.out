@@ -1,0 +1,15 @@
+<!-- Test CBOOL function.
+	If expression is zero, return FALSE.
+    If expression is the string "TRUE" (case insensitive) return TRUE
+    If expression is the string "FALSE" (case insensitive) return FALSE
+	If expression is non-zero, return TRUE
+-->
+
+CBOOL(0) = False<br>
+CBOOL(1) = True<br>
+CBOOL("TRUE") = True<br>
+CBOOL("true") = True<br>
+CBOOL("FALSE") = False<br>
+CBOOL("false") = False<br>
+CBOOL(2-2) = False<br>
+CBOOL("12") = True<br>

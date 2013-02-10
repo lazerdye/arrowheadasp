@@ -1,0 +1,13 @@
+Test logical EQV operator:
+<hr>
+
+True eqv True =         True<br>
+True eqv False =        False<br>
+IsNull(True eqv Null) =	True<br>
+False eqv True =        False<br>
+False eqv False =       True<br>
+IsNull(False eqv Null) =True<br>
+IsNull(Null eqv True) = True<br>
+IsNull(Null eqv False) =True<br>
+IsNull(Null eqv Null) = True<br>
+

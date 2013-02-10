@@ -1,0 +1,21 @@
+
+Here is the test of basic ADODB functions.<br>
+CursorLocation: 2<br>
+    Value: First Row / 1<br>
+        Value: Second Row / 2<br>
+        Value: Third Row / 3<br>
+        Value: Fourth Row / 4<br>
+        Value: Fifth Row / 5<br>
+        Value: Sixth Row / 6<br>
+        Value: Seventh Row / 7<br>
+        Value: Eigth Row / 8<br>
+        Value: Ninth Row / 9<br>
+        Value: Tenth Row / 10<br>
+        Value: Eleventh Row / 11<br>
+        Value: Twelfth Row / 12<br>
+        Value: Thirteenth Row / 13<br>
+        Value: Fourteenth Row / 14<br>
+        Value: Fifteenth Row / 15<br>
+        
+
+The End.

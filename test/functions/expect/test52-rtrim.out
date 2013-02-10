@@ -1,0 +1,17 @@
+<!-- Test RTrim function.
+-->
+
+RTrim("nospaces") = "nospaces"<br>
+RTrim("one space") = "one space"<br>
+RTrim("   ") = ""<br>
+RTrim(" space") = " space"<br>
+RTrim("  space") = "  space"<br>
+RTrim("   space") = "   space"<br>
+RTrim("   one space") = "   one space"<br>
+RTrim("space ") = "space"<br>
+RTrim("space  ") = "space"<br>
+RTrim("space   ") = "space"<br>
+RTrim(" space ") = " space"<br>
+RTrim("  space  ") = "  space"<br>
+RTrim("   space   ") = "   space"<br>
+IsNull(RTrim(Null)) = True<br>

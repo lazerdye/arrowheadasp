@@ -1,0 +1,24 @@
+<!-- Test FormatDateTime function.
+-->
+
+Dim TheDate <br>
+
+TheDate = "12/31/05 13:34:56" <br>
+
+FormatDateTime(TheDate) =
+	12/31/2005 1:34:56 PM<br>
+
+FormatDateTime(TheDate, vbGeneralDate) =
+	12/31/2005 1:34:56 PM<br>
+
+FormatDateTime(TheDate, vbShortDate) =
+	12/31/2005<br>
+
+FormatDateTime(TheDate, vbLongDate) =
+	Saturday, December 31, 2005<br>
+
+FormatDateTime(TheDate, vbShortTime) =
+	13:34<br>
+
+FormatDateTime(TheDate, vbLongTime) =
+	1:34:56 PM<br>

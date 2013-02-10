@@ -1,0 +1,9 @@
+
+Here is the test of opening a schema.<br>
+Column Name: StringField<br>
+            Column Name: IntField<br>
+            Column Name: NullableStringField<br>
+            Column Name: NullableIntField<br>
+            
+
+The End.

@@ -1,0 +1,7 @@
+Absolute expiry
+
+Response.ExpiresAbsolute = CDate("January 25, 1980") 
+<br>
+
+Response.Expires = -^[0-9]+$<br>
+Response.ExpiresAbsolute = 1/25/1980<br>
