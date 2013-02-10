@@ -54,4 +54,9 @@ public class HashMapScriptCache implements ScriptCache {
 		}
 		return script;
 	}
+
+    public void refresh(String filename, CachedScript script)
+    {
+        /* Don't do anything */
+    }
 }

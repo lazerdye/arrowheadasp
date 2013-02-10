@@ -38,7 +38,7 @@ import java.util.Map;
 
 import jregex.Pattern;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.tripi.asp.parse.FileFactory;
 
@@ -49,7 +49,7 @@ import com.tripi.asp.parse.FileFactory;
 public class AspFileFactory implements FileFactory, Serializable
 {
     /** Debugging class */
-    private static final transient Category DBG = Category.getInstance(AspFileFactory.class);
+    private static final transient Logger DBG = Logger.getLogger(AspFileFactory.class);
     
     private transient AspContext context;
 

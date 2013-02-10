@@ -81,7 +81,7 @@ The current release is tested with the 2.0.2 version.
 * Patience
 
 This is ALPHA software, it is not feature complete, so there is a great 
-change you will run into problems. Please do not hesitate to contact the 
+chance you will run into problems. Please do not hesitate to contact the 
 author in case of a problem, I will try to help!
 
 

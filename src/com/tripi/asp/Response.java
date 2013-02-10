@@ -35,7 +35,7 @@ import java.util.TimeZone;
 import java.util.Vector;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * ASP "Response" object. This object handles communication from ASP
@@ -68,7 +68,7 @@ import org.apache.log4j.Category;
 public class Response
 {
     /** Log4j debugging object */
-    Category DBG = Category.getInstance(Response.class);
+    Logger DBG = Logger.getLogger(Response.class);
 
     /** JSDK servlet response object */
     HttpServletResponse response;

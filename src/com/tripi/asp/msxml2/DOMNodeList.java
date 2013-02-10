@@ -28,7 +28,7 @@ import java.util.Collection;
 import java.util.Vector;
 
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class implements msxml2.DOMNodeList. 
@@ -38,7 +38,7 @@ import org.apache.log4j.Category;
 public class DOMNodeList {
 
 	/** Debugging category. */
-	Category DBG = Category.getInstance(DOMNodeList.class);
+	Logger DBG = Logger.getLogger(DOMNodeList.class);
 	
 	private Vector children;
 

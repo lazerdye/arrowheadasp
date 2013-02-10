@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.tripi.asp.cache.CachedScript;
 import com.tripi.asp.cache.HashMapScriptCache;
@@ -42,7 +42,7 @@ import com.tripi.asp.parse.VBScript;
  */
 public class AspHandler
 {
-    static private final transient Category DBG = Category.getInstance(AspHandler.class);
+    static private final transient Logger DBG = Logger.getLogger(AspHandler.class);
 
     /**
      * Cache of pre-parsed files.
@@ -92,6 +92,7 @@ public class AspHandler
                     else
                         if (DBG.isDebugEnabled()) DBG.debug("File was modified, re-parsing");
                 } else {
+                    if (DBG.isDebugEnabled()) DBG.debug("Using cached script.");
                     return cachedScript.node;
                 }
             } else {
@@ -118,6 +119,9 @@ public class AspHandler
                 if (DBG.isDebugEnabled()) DBG.debug("Updating values");
                 cachedScript.node = value;
                 cachedScript.checkedTime = System.currentTimeMillis();
+                if (DBG.isDebugEnabled()) DBG.debug("Refreshing cache");
+
+                cachedScripts.refresh(filename, cachedScript);
 
                 if (DBG.isDebugEnabled()) DBG.debug("Done.");
                 return value;

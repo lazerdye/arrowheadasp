@@ -28,7 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This exception only handles a "FileNotFound" exception by sending
@@ -40,7 +40,7 @@ import org.apache.log4j.Category;
 public class FileNotFoundExceptionHandler implements AspExceptionHandler
 {
     /** Debugging class */
-    static Category DBG = Category.getInstance(FileNotFoundExceptionHandler.class);
+    static Logger DBG = Logger.getLogger(FileNotFoundExceptionHandler.class);
 
     /**
      * This function configures any properties

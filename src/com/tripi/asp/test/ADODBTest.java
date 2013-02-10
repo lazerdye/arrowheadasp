@@ -24,11 +24,14 @@
  */
 package com.tripi.asp.test;
 
-import com.tripi.asp.AspException;
-import com.tripi.asp.Constants;
-import com.tripi.asp.IdentNode;
-import junit.framework.*;
 import java.io.IOException;
+
+import junit.framework.Assert;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
+import com.tripi.asp.AspException;
 
 /**
  * The MiscTest class contains the unit tests for ASP operators

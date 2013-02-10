@@ -28,7 +28,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Properties;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class handles an exception by setting the status on the response object.
@@ -39,7 +39,7 @@ import org.apache.log4j.Category;
 public class SetStatusExceptionHandler implements AspExceptionHandler
 {
     /** Debugging class */
-    static Category DBG = Category.getInstance(SetStatusExceptionHandler.class);
+    static Logger DBG = Logger.getLogger(SetStatusExceptionHandler.class);
 
     /** Exception code */
     int status = 500;

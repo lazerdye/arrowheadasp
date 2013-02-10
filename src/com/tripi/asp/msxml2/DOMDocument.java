@@ -27,7 +27,7 @@ package com.tripi.asp.msxml2;
 import java.io.File;
 import java.util.Properties;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.input.SAXBuilder;
@@ -45,7 +45,7 @@ import com.tripi.asp.Server;
 public class DOMDocument extends DOMNode {
 
 	/** Debugging category. */
-	Category DBG = Category.getInstance(DOMDocument.class);
+	Logger DBG = Logger.getLogger(DOMDocument.class);
 
 	// indicates whether asynchronous download is permitted [read/write]
 	// this value is ignored

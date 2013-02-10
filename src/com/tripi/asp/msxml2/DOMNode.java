@@ -27,7 +27,7 @@ package com.tripi.asp.msxml2;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.output.XMLOutputter;
 
@@ -39,7 +39,7 @@ import org.jdom.output.XMLOutputter;
 public class DOMNode {
 
 	/** Debugging category. */
-	Category DBG = Category.getInstance(DOMNode.class);
+	Logger DBG = Logger.getLogger(DOMNode.class);
 
 	// contains the list of attributes for this node. [read-only; see Attributes()]
 	protected DOMNamedNodeMap _Attributes;

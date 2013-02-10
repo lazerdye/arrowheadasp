@@ -31,13 +31,23 @@ import com.opensymphony.oscache.base.NeedsRefreshException;
 import com.opensymphony.oscache.general.GeneralCacheAdministrator;
 import com.tripi.asp.AspContext;
 
+import java.io.Serializable;
+
+
 /**
  * This class implements a script cache with an OSCache backend.
  */
-public class OSCacheScriptCache implements ScriptCache {
-	private final Logger LOG = Logger.getLogger(OSCacheScriptCache.class);
+public class OSCacheScriptCache implements ScriptCache, Serializable {
+	private final transient Logger LOG = Logger.getLogger(OSCacheScriptCache.class);
 	
-	private Cache cache = null;
+	private Cache cache;
+
+    public OSCacheScriptCache()
+    {
+		GeneralCacheAdministrator admin = new GeneralCacheAdministrator();
+		cache = admin.getCache();
+		assert(cache != null);
+    }
 	
 	/**
 	 * Get the cached script specified by the given filename/context.
@@ -47,19 +57,27 @@ public class OSCacheScriptCache implements ScriptCache {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Get: " + filename);
 		}
-		if (cache == null) loadCache();
 		CachedScript script;
 		try {
 			script = (CachedScript)cache.getFromCache(filename);
+            script.fileFactory.setContext(context);
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Old cached.");
+                LOG.debug("Node: " + script.node);
+            }
 		} catch(NeedsRefreshException ex) {
+            if (LOG.isDebugEnabled()) {
+                LOG.debug("Needs refreshed: " + ex.toString());
+            }
 			script = new CachedScript(context);
 			cache.putInCache(filename, script);
 		};
 		return script;
 	}
-	private void loadCache() {
-		GeneralCacheAdministrator admin = new GeneralCacheAdministrator();
-		cache = admin.getCache();
-		assert(cache != null);
-	}
+
+    public synchronized void refresh(String filename, CachedScript script)
+    {
+        cache.putInCache(filename, script);
+    }
+
 }

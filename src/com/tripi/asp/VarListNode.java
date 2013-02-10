@@ -26,7 +26,7 @@ package com.tripi.asp;
 
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class contains a list of variables.
@@ -36,7 +36,7 @@ import org.apache.log4j.Category;
 public class VarListNode extends DefaultNode
 {
     /** Debugging context */
-    private static final transient Category DBG = Category.getInstance(VarListNode.class);
+    private static final transient Logger DBG = Logger.getLogger(VarListNode.class);
 
     /** List of variables */
     Vector    vars;

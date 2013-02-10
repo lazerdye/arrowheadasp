@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.tripi.asp.cache.ScriptCache;
 
@@ -44,8 +44,8 @@ import javax.servlet.http.HttpSession;
 public class GlobalScope
 {
     /** Debugging category */
-    static final private Category DBG =
-        Category.getInstance(GlobalScope.class);
+    static final private Logger DBG =
+        Logger.getLogger(GlobalScope.class);
 
     /** The scope universal to all ASP scripts. */
     Hashtable universalScope = null;
@@ -140,14 +140,23 @@ public class GlobalScope
 	 * @param config
 	 */
 	private void getScriptCache(ServletConfig config) {
-		String clsName = config.getInitParameter("com.tripi.asp.cache.ScriptCache");
-		if (clsName == null) clsName = "com.tripi.asp.cache.HashMapScriptCache";
-		try {
-			Class cls = Class.forName(clsName);
-			cache = (ScriptCache)cls.newInstance();
-		} catch (Exception ex) {
-			throw new Error("Could not create class: " + clsName);
-		}
+        ServletContext ctx = config.getServletContext();
+        synchronized(ctx)
+        {
+            cache = (ScriptCache)ctx.getAttribute("ArrowHeadASP_ScriptCache");
+            if (cache == null)
+            {
+		        String clsName = config.getInitParameter("com.tripi.asp.cache.ScriptCache");
+		        if (clsName == null) clsName = "com.tripi.asp.cache.HashMapScriptCache";
+		        try {
+			        Class cls = Class.forName(clsName);
+			        cache = (ScriptCache)cls.newInstance();
+		        } catch (Exception ex) {
+			        throw new Error("Could not create class: " + clsName);
+		        }
+                ctx.setAttribute("ArrowHeadASP_ScriptCache", cache);
+            }
+        }
 	}
 
 	/**

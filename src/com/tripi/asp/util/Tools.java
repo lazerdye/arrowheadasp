@@ -34,7 +34,7 @@ import java.util.Vector;
 
 import jregex.Pattern;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.tripi.asp.AspCollection;
 import com.tripi.asp.AspException;
@@ -49,7 +49,7 @@ import com.tripi.asp.UndefinedValueNode;
 public class Tools
 {
     /** Debugging category */
-    private static Category DBG = Category.getInstance(Tools.class);
+    private static Logger DBG = Logger.getLogger(Tools.class);
 
     /**
      * This function parses a query string. The keys and values

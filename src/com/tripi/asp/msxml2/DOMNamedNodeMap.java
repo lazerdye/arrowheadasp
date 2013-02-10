@@ -27,7 +27,7 @@ package com.tripi.asp.msxml2;
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class implements msxml2.DOMNamedNodeMap. 
@@ -37,7 +37,7 @@ import org.apache.log4j.Category;
 public class DOMNamedNodeMap {
 
 	/** Debugging category. */
-	Category DBG = Category.getInstance(DOMNamedNodeMap.class);
+	Logger DBG = Logger.getLogger(DOMNamedNodeMap.class);
 	
 	private HashMap map;
 	

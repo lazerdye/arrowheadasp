@@ -25,7 +25,7 @@
 package com.tripi.asp;
 
 import java.util.Enumeration;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * JavaMapNode handles Java objects which implement the SimpleMap 
@@ -36,7 +36,7 @@ import org.apache.log4j.Category;
 public class JavaMapNode extends JavaObjectNode implements SimpleMap
 {
     /** Debugging category */
-    private static final transient Category DBG = Category.getInstance(JavaMapNode.class);
+    private static final transient Logger DBG = Logger.getLogger(JavaMapNode.class);
 
     /** The object this JavaObjectNode points to, dereferenced as a 
      * SimpleMap object */

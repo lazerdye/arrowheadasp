@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -246,8 +246,8 @@ import java.util.Hashtable;
 public class VBScriptGlobals
 {
     /** Debugging category */
-    static final private Category DBG =
-        Category.getInstance(VBScriptGlobals.class);
+    static final private Logger DBG =
+        Logger.getLogger(VBScriptGlobals.class);
 
     /* Constants */
     /** "General" date */

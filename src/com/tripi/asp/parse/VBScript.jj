@@ -158,7 +158,7 @@ Node HTMLNode(DebugContext dbg) :
 }
 {   
     t = <HTML> { t.fillDebugContext(dbg); return new HTMLNode(t.image); }
-|   <OUTPUT> t = <EQ> n = ExprNode()
+|   t = <OUTPUT> n = ExprNode()
     {
         if (dbg == null) dbg = new DebugContext();
         t.fillDebugContext(dbg);
@@ -262,7 +262,7 @@ IdentNode CtxIdentNode(DebugContext dbg) :
     Token t;
 }
 {
-    t = <IDENTIFIER> { t.fillDebugContext(dbg); return new IdentNode(t.image); }
+    t = <IDENTIFIER> { t.fillDebugContext(dbg); return IdentNode.create(t.image); }
 }
 
 NumberNode NumberNode() :
@@ -296,7 +296,7 @@ IdentNode LExprField() :
     Token t;
 }
 {
-    t = <DOT> { return new IdentNode(t.image); }
+    t = <DOT> { return IdentNode.create(t.image); }
 }
 
 void CommaVarListNode(VarListNode v) :

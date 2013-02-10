@@ -7,7 +7,7 @@
 <!--
 <property name="build.compiler" value="jikes"/>
 -->
-<property name="VERSION"  value="0.2.3"/>
+<property name="VERSION"  value="0.2.4"/>
 <property name="src" value="src"/>
 <property name="build" value="build"/>
 <property name="dist"  value="dist"/>
@@ -234,6 +234,7 @@ Please see docs/COMPILING.txt for help.
 
     <mkdir dir="${report}"/>
     <mkdir dir="${report}/html"/>
+    <mkdir dir="${test}/aspparse/out"/>
     <mkdir dir="${test}/objects/out"/>
     <mkdir dir="${test}/functions/out"/>
     <mkdir dir="${test}/statements/out"/>
@@ -275,6 +276,20 @@ Please see docs/COMPILING.txt for help.
     <copy tofile="${dist}/release/UPGRADING-${VERSION}.txt" file="${docs}/UPGRADING.txt"/>
 </target>
 
+<target name="test-war" description="Create a WAR file for testing" depends="dist">
+    <mkdir dir="${dist}/war"/>
+    <war destfile="dist/war/asptest.war" webxml="test/WEB-INF/web.xml">
+        <fileset dir="test">
+            <exclude name="WEB-INF/web.xml"/>
+        </fileset>
+        <lib dir="lib"/>
+        <classes dir="build"/>
+        <classes dir="src">
+            <include name="log4j.properties"/>
+        </classes>
+    </war>
+</target>
+
 <!-- The clean target removes all of the preprocessed files, including the
      output source files of the lexical analyzer and LR1 parser -->
 <target name="clean" description="cleans the output directories for a clean slate">
@@ -285,6 +300,7 @@ Please see docs/COMPILING.txt for help.
     <delete dir="${docs}/api"/>
     <delete dir="${report}/html"/>
     <delete dir="${report}"/>
+    <delete dir="${test}/aspparse/out"/>
     <delete dir="${test}/functions/out"/>
     <delete dir="${test}/objects/out"/>
     <delete dir="${test}/statements/out"/>

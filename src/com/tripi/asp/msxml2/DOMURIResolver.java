@@ -12,14 +12,14 @@ import javax.xml.transform.Source;
 import javax.xml.transform.URIResolver;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 /**
  * @author jhorner
  */
 public class DOMURIResolver implements URIResolver {
 
 	/** Debugging category. */
-	Category DBG = Category.getInstance(DOMDocument.class);
+	Logger DBG = Logger.getLogger(DOMDocument.class);
 
 	private String pathprefix;
 	private String basefilename;

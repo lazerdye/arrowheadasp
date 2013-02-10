@@ -33,7 +33,7 @@ import java.util.Hashtable;
 import java.util.Stack;
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class implements a class to hold the current state of ASP 
@@ -44,7 +44,7 @@ import org.apache.log4j.Category;
 public class AspContext
 {
     /** Debugging information */
-    private static final Category DBG = Category.getInstance(AspContext.class);
+    private static final Logger DBG = Logger.getLogger(AspContext.class);
 
     /** Universal scope */
     Hashtable   universalScope;

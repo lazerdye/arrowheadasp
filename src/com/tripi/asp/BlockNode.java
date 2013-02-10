@@ -24,9 +24,9 @@
  */
 package com.tripi.asp;
 
-import java.util.Vector;
+import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * BlockNode contains a block of ASP code, one or more lines of code.
@@ -37,21 +37,21 @@ import org.apache.log4j.Category;
 public class BlockNode implements Node
 {
     /** Debugging code */
-    private static final transient Category DBG = Category.getInstance(BlockNode.class);
+    private static final transient Logger DBG = Logger.getLogger(BlockNode.class);
 
     /** List of blocks */
-    Vector    blocks;
+    List    blocks;
 
     /** List of debugging contexts corresponding to blocks */
-    Vector    linenos;
+    List    linenos;
 
     /**
      * Constructor, starting with no lines of code.
      */
     public BlockNode()
     {
-        blocks = new Vector();
-        linenos = new Vector();
+        blocks = new java.util.ArrayList();
+        linenos = new java.util.ArrayList();
     }
 
     /**

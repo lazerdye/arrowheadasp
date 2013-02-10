@@ -35,7 +35,7 @@ import jregex.Matcher;
 import jregex.Pattern;
 import jregex.RETokenizer;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * The AspDate class contains the special code needed for handling ASP
@@ -48,7 +48,7 @@ import org.apache.log4j.Category;
 public class AspDate
 {
     /** Debugging class */
-    private static final Category DBG = Category.getInstance(AspDate.class);
+    private static final Logger DBG = Logger.getLogger(AspDate.class);
 
     /** Month bit field */
     static final int MONTH = 0x10;

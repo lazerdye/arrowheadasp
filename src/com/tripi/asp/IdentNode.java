@@ -24,6 +24,8 @@
  */
 package com.tripi.asp;
 
+import java.util.Map;
+
 /**
  * IdentNode contains an identifier
  *
@@ -32,6 +34,23 @@ package com.tripi.asp;
  */
 public class IdentNode extends DefaultNode
 {
+    private static final transient Map cachedIdents = new java.util.HashMap();
+
+    /* Flywheel pattern */
+    public static IdentNode create(String value)
+    {
+        synchronized(cachedIdents)
+        {
+            if (cachedIdents.containsKey(value))
+            {
+                return (IdentNode)cachedIdents.get(value);
+            }
+            IdentNode node = new IdentNode(value);
+            cachedIdents.put(value, node);
+            return node;
+        }
+    }
+
     /** The string identifier of this node */
     String ident;
 

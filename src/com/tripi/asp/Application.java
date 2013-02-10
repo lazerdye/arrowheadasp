@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * Application is a class which holds application-specific data.
@@ -44,7 +44,7 @@ public class Application implements SimpleMap
     /**
      * Debugging output class.
      */
-    Category DBG = Category.getInstance(Application.class);
+    Logger DBG = Logger.getLogger(Application.class);
 
     /**
      * The thread which currently has the lock, null means no thread

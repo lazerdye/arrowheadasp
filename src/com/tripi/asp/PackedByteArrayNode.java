@@ -26,7 +26,7 @@ package com.tripi.asp;
 
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * Implements a special version of an ArrayNode which will contain a
@@ -37,8 +37,8 @@ import org.apache.log4j.Category;
 public class PackedByteArrayNode extends DefaultNode implements MapNode
 {
     /** Debugging object */
-    private static final transient Category DBG =
-        Category.getInstance(PackedByteArrayNode.class);
+    private static final transient Logger DBG =
+        Logger.getLogger(PackedByteArrayNode.class);
 
     /** Contents of this array */
     byte values[];

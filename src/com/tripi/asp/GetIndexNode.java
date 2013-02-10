@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This node handles the "map" expression in vbscript, such as
@@ -36,7 +36,7 @@ import org.apache.log4j.Category;
 public class GetIndexNode extends DefaultNode
 {
     /** Debugging category */
-    private static final transient Category DBG = Category.getInstance(GetIndexNode.class);
+    private static final transient Logger DBG = Logger.getLogger(GetIndexNode.class);
 
     /** Expression to obtain index of */
     Node ident;

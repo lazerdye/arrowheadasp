@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * ArithmenticNode handles arithmetic operations.
@@ -57,7 +57,7 @@ import org.apache.log4j.Category;
 public class ArithmeticNode implements Node
 {
     /** Debugging class */
-    private static final transient Category DBG = Category.getInstance(ArithmeticNode.class.getName());
+    private static final transient Logger DBG = Logger.getLogger(ArithmeticNode.class.getName());
 
     /** The plus operator. */
     public static final int PLUS = 1;

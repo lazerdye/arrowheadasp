@@ -39,19 +39,38 @@ public class AspParse {
 
 PARSER_END(AspParse)
 
-TOKEN :
+<ASP> SKIP :
+{
+	< ENDASP : <INTENDASP> > : DEFAULT
+}
+
+<ASP> TOKEN :
+{
+	< ASPSCRIPT : ((~["%","\n","\r"] | ( "%" ~[">"] ) ))+ (( "\n" | "\r") (<WS>)*)?>
+}
+
+<ASP> MORE :
+{
+	< NEWLINE : ( "\n" | "\r") >
+}
+
+<DEFAULT> SKIP :
+{
+    < STARTASP : <INTSTARTASP> > : ASP
+}
+
+<DEFAULT> TOKEN :
 {
     < INCLUDE : "<!--" (<WS>)* "#include" (<WS>)* ("virtual"|"file")
-        (<WS>)* "=" (<WS>)* ( <FILENAME> | <QUOTEDFILENAME> ) (<WS>)* "-->" >
-|   < HTML : "<!" | "</S" | (~["<"] | "<" ~["!","%","/"] | "</" ~["S"] )+ >
-|   < LANGUAGEDEF : <STARTASP> (<WS>)* "@" (<NOTENDASP>)* <ENDASP> >
-|   < OUTPUTSCRIPT : <STARTASP> (<WS>)* "=" (<NOTENDASP>)* <ENDASP> >
-|   < ASPSCRIPT : <STARTASP> (<NOTENDASP>)* <ENDASP> >
+        (<WS>)* "=" (<WS>)* ( <FILENAME> | <QUOTEDFILENAME> ) (<WS>)* "-->" > : DEFAULT
+|   < HTML : "<!" | "</S" | (~["<"] | "<" ~["!","%","/"] | "</" ~["S"] )+ > : DEFAULT
+|   < LANGUAGEDEF : <INTSTARTASP> (<WS>)* "@" (<NOTENDASP>)* <INTENDASP> > : DEFAULT
+|	< OUTPUTSCRIPT : <INTSTARTASP> (<WS>)* "=" > : ASP
 |   < SERVERSCRIPT : <SCRIPTSTART> (<NOTSCRIPTEND>)* <SCRIPTEND> >
 |   < #NOTSTARTASP : (~["<"] | ( "<" ~["%"] ) ) >
 |   < #NOTENDASP : (~["%"] | ( "%" ~[">"] ) ) >
-|   < #STARTASP : "<" "%" >
-|   < #ENDASP : "%" ">" >
+|   < #INTSTARTASP : "<" "%" >
+|   < #INTENDASP : "%" ">" >
 |   < #WS : " " | "\n" | "\r" | "\t" >
 |   < #FILENAME : ( ~["%"," ",">"] )* >
 |   < #QUOTEDFILENAME : "\"" ( ~["\""] )* "\"" >

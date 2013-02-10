@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Vector;
 import java.util.Map;
 import java.lang.reflect.*;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * JavaObjectNode class handles the interaction between Java objects
@@ -40,7 +40,7 @@ import org.apache.log4j.Category;
 public class JavaObjectNode extends DefaultNode implements ObjectNode, MapNode
 {
     /** Debugging category */
-    private static final transient Category DBG = Category.getInstance(JavaObjectNode.class);
+    private static final transient Logger DBG = Logger.getLogger(JavaObjectNode.class);
 
     /** Java object this ASP node is referencing */
     Object obj;

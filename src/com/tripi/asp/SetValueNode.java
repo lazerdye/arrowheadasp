@@ -26,7 +26,7 @@ package com.tripi.asp;
 
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * SetValueNode implements setting of variables, the following construct:
@@ -43,7 +43,7 @@ import org.apache.log4j.Category;
 public class SetValueNode implements Node
 {
     /** Debugging category */
-    private static final transient Category    DBG = Category.getInstance(SetValueNode.class);
+    private static final transient Logger    DBG = Logger.getLogger(SetValueNode.class);
 
     /** The identifier we wish to set */
     Node    ident;

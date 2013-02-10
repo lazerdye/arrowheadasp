@@ -1,3 +1,9 @@
+Changes from 0.2.3
+------------------
+* Updated to work with newer log4j
+* Fixed bug in oscache caching
+* Changed the way nested parsers are handled
+
 Changes from 0.2.2
 ------------------
 * Update to work with JavaCC 3.x

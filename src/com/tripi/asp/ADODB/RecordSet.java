@@ -36,7 +36,7 @@ import java.util.Hashtable;
 
 import java.io.*;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class implements the ADODB.RecordSet object.
@@ -113,7 +113,7 @@ import org.apache.log4j.Category;
 public class RecordSet implements SimpleMap
 {
     /** Debugging category */
-    static Category DBG = Category.getInstance(RecordSet.class.getName());
+    static Logger DBG = Logger.getLogger(RecordSet.class.getName());
 
     /** Active record set, null if no active RS */
     java.sql.ResultSet rs;

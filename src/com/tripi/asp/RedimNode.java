@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import java.util.Vector;
 
@@ -37,7 +37,7 @@ import java.util.Vector;
 public class RedimNode extends DefaultNode 
 {
     /** Debugging class */
-    private static final transient Category DBG = Category.getInstance(RedimNode.class);
+    private static final transient Logger DBG = Logger.getLogger(RedimNode.class);
 
     /** Identifier of variable to redim */
     IdentNode ident;

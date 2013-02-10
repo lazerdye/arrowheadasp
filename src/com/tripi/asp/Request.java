@@ -35,7 +35,7 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.tripi.asp.util.ParseQueryString;
 import com.tripi.asp.util.Tools;
@@ -62,7 +62,7 @@ import com.tripi.asp.util.Tools;
 public class Request implements SimpleMap
 {
     /** Debugging category */
-    static private Category DBG = Category.getInstance(Request.class);
+    static private Logger DBG = Logger.getLogger(Request.class);
 
     /** Java servlet request object */
     HttpServletRequest request;

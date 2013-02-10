@@ -28,7 +28,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.IOException;
 import java.util.Properties;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class handles an exception by printing out the stack trace
@@ -40,7 +40,7 @@ import org.apache.log4j.Category;
 public class PrintExceptionHandler implements AspExceptionHandler
 {
     /** Debugging class */
-    static Category DBG = Category.getInstance(PrintExceptionHandler.class);
+    static Logger DBG = Logger.getLogger(PrintExceptionHandler.class);
 
     /**
      * This function configures any properties

@@ -27,7 +27,7 @@ package com.tripi.asp;
 import java.util.Vector;
 import java.util.Map;
 import java.lang.reflect.*;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * JavaReferenceNode is a sub-class of the JavaObjectNode class
@@ -38,7 +38,7 @@ import org.apache.log4j.Category;
 public class JavaReferenceNode extends JavaObjectNode implements SimpleReference
 {
     /** Debugging category */
-    private static final transient Category DBG = Category.getInstance(JavaReferenceNode.class);
+    private static final transient Logger DBG = Logger.getLogger(JavaReferenceNode.class);
 
     /** SimpleReference cast of the object contained in this JavaObjectNode */
     SimpleReference obj;

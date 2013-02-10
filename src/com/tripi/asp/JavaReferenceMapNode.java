@@ -25,7 +25,7 @@
 package com.tripi.asp;
 
 import java.util.Enumeration;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * JavaReferenceMapNode class is a sub-class of JavaObjectNode specifically
@@ -38,8 +38,8 @@ import org.apache.log4j.Category;
 public class JavaReferenceMapNode extends JavaObjectNode implements SimpleMap, SimpleReference
 {
     /** Debugging object */
-    private static final transient Category DBG =
-        Category.getInstance(JavaReferenceMapNode.class);
+    private static final transient Logger DBG =
+        Logger.getLogger(JavaReferenceMapNode.class);
 
     /** Contained object as a SimpleMap interface object */
     SimpleMap mapObj;

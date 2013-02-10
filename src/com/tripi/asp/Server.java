@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 
@@ -43,7 +43,7 @@ public class Server
     /**
      * Debugging category
      */
-    static Category DBG = Category.getInstance(Server.class);
+    static Logger DBG = Logger.getLogger(Server.class);
 
     /** Script timeout */
     public int ScriptTimeout = 90;

@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.util.Enumeration;
 import java.io.Serializable;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * Session class, implements the ASP "Session" object.
@@ -52,7 +52,7 @@ import org.apache.log4j.Category;
 public class Session implements SimpleMap
 {
     /** Debugging category */
-    private final static Category DBG = Category.getInstance(Session.class);
+    private final static Logger DBG = Logger.getLogger(Session.class);
 
     /** HTTP Session */
     HttpSession httpSession;

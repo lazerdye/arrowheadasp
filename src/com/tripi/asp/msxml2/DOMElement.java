@@ -25,7 +25,7 @@
 package com.tripi.asp.msxml2;
 
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class implements msxml2.DOMElement.
@@ -35,7 +35,7 @@ import org.apache.log4j.Category;
 public class DOMElement extends DOMNode {
 	
 	/** Debugging category. */
-	Category DBG = Category.getInstance(DOMElement.class);
+	Logger DBG = Logger.getLogger(DOMElement.class);
 	
 	public DOMElement () {
 		super();

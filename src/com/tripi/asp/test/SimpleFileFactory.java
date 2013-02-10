@@ -27,7 +27,7 @@ package com.tripi.asp.test;
 import com.tripi.asp.parse.FileFactory;
 import com.tripi.asp.*;
 import jregex.*;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStream;
@@ -42,7 +42,7 @@ import java.io.Reader;
 public class SimpleFileFactory implements FileFactory
 {
     /** Debugging class */
-    private static final Category DBG = Category.getInstance(SimpleFileFactory.class);
+    private static final Logger DBG = Logger.getLogger(SimpleFileFactory.class);
 
     /**
      * Resolve a relative file's location based on the given file.

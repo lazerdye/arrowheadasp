@@ -38,4 +38,6 @@ public interface ScriptCache {
 	 * @return new or existing CachedScript object, never null
 	 */
 	CachedScript get(String filename, AspContext context);
+
+	void refresh(String filename, CachedScript script);
 }

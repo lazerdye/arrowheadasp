@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionListener;
@@ -51,7 +51,7 @@ public class AspSessionHandler implements HttpSessionListener
     /**
      * Debugging class
      */
-    private Category DBG = Category.getInstance(AspSessionHandler.class);
+    private Logger DBG = Logger.getLogger(AspSessionHandler.class);
 
 
     /**
@@ -186,7 +186,7 @@ public class AspSessionHandler implements HttpSessionListener
         /**
          * Debugging class
          */
-        private static Category DBG = Category.getInstance(AspSynchronizedCollection.class);
+        private static Logger DBG = Logger.getLogger(AspSynchronizedCollection.class);
 
         /* The session this collection is attached to */
         HttpSession session;

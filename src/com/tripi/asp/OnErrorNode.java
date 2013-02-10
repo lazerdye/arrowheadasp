@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * The OnErrorNode handles the ON ERROR GOTO x and ON ERROR RESUME NEXT
@@ -38,7 +38,7 @@ public class OnErrorNode extends DefaultNode
     /**
      * Debugging class
      */ 
-    private static final transient Category DBG = Category.getInstance(OnErrorNode.class);
+    private static final transient Logger DBG = Logger.getLogger(OnErrorNode.class);
 
     /**
      * Line number to jump to

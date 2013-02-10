@@ -24,7 +24,7 @@
  */
 package com.tripi.asp.test;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import junit.framework.*;
 import jregex.*;
 
@@ -37,7 +37,7 @@ import jregex.*;
 public class TestComparator
 {
     /** Debugging category */
-    static final Category DBG = Category.getInstance(TestComparator.class);
+    static final Logger DBG = Logger.getLogger(TestComparator.class);
 
     /** Template */
     String  templ;

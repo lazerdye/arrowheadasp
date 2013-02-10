@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.tripi.asp.cache.ScriptCache;
 
@@ -36,7 +36,7 @@ import com.tripi.asp.cache.ScriptCache;
 public class AspThread implements Runnable
 {
 	/** Debugging category */
-    private Category DBG = Category.getInstance(AspThread.class);
+    private Logger DBG = Logger.getLogger(AspThread.class);
 
     /** Running context */
     AspContext context;

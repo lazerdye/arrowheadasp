@@ -27,7 +27,6 @@ package com.tripi.asp.test;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +40,7 @@ import java.net.URLConnection;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.tripi.asp.AspContext;
@@ -62,7 +61,7 @@ import com.tripi.asp.Response;
 public class AspTest
 {
     /** Debugging category */
-    static final Category DBG = Category.getInstance(AspTest.class);
+    static final Logger DBG = Logger.getLogger(AspTest.class);
 
     /** Log4j file to use */
     static String  param_log4j = "log4j.configure";
@@ -138,6 +137,7 @@ public class AspTest
         TestSuite suite = new TestSuite("All Test");
         suite.addTest(new TestSuite(AspCollectionTest.class));
         suite.addTest(new TestSuite(ParseQueryStringTest.class));
+        suite.addTest(AspParseTest.suite());
         suite.addTest(FunctionsTest.suite());
         suite.addTest(ObjectsTest.suite());
         suite.addTest(StatementsTest.suite());
@@ -189,9 +189,6 @@ public class AspTest
      */
     public static void save(String content, String filename) throws IOException
     {
-    	if (filename.indexOf("8bit") != -1) {
-    		System.out.println("8BIT: " + content);
-    	}
     	Writer output = new FileWriter(filename);
     	output.write(content);
     	output.close();

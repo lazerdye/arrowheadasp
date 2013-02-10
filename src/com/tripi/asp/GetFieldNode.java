@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This node handles the evaluating of a field expression evaluation.
@@ -36,8 +36,8 @@ import org.apache.log4j.Category;
 public class GetFieldNode extends DefaultNode
 {
     /** Debugging category */
-    private static final transient Category DBG =
-        Category.getInstance(GetFieldNode.class);
+    private static final transient Logger DBG =
+        Logger.getLogger(GetFieldNode.class);
 
     /** Identifier of the field expression */
     IdentNode ident;

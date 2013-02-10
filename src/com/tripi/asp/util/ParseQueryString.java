@@ -33,7 +33,7 @@ import jregex.Matcher;
 import jregex.Pattern;
 import jregex.RETokenizer;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class implements parsing for query string variables.
@@ -44,7 +44,7 @@ import org.apache.log4j.Category;
 public class ParseQueryString
 {
     /** Debugging category */
-    private static final Category DBG = Category.getInstance(ParseQueryString.class);
+    private static final Logger DBG = Logger.getLogger(ParseQueryString.class);
     
     /** Pattern used to tokenize the list */
     protected static final Pattern tokenizerPattern = new Pattern("&");

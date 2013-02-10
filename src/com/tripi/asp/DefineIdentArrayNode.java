@@ -25,7 +25,7 @@
 package com.tripi.asp;
 
 import java.util.List;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This node implements the defining of an array, DIM ident(length)
@@ -36,8 +36,8 @@ import org.apache.log4j.Category;
 public class DefineIdentArrayNode extends DefaultNode
 {
     /** Debugging class */
-    private static final transient Category DBG =
-        Category.getInstance(DefineIdentArrayNode.class);
+    private static final transient Logger DBG =
+        Logger.getLogger(DefineIdentArrayNode.class);
 
     /** Name of this identifier */
     IdentNode ident;

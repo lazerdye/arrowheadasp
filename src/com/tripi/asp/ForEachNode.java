@@ -27,7 +27,7 @@ package com.tripi.asp;
 import java.util.Enumeration;
 import java.lang.reflect.Array;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * The ForEachNode class handles the FOR EACH .. IN .. statement in
@@ -39,7 +39,7 @@ import org.apache.log4j.Category;
 public class ForEachNode implements Node
 {
     /** The debugging class */
-    private static final transient Category DBG = Category.getInstance(ForEachNode.class);
+    private static final transient Logger DBG = Logger.getLogger(ForEachNode.class);
 
     /** The identifier of the loop variable */
     IdentNode ident;

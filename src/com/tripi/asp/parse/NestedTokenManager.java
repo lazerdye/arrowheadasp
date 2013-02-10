@@ -30,7 +30,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.Stack;
 import jregex.*;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class is a nested token manager, and handles VBScript tokens 
@@ -39,7 +39,7 @@ import org.apache.log4j.Category;
 public class NestedTokenManager implements TokenManager
 {
     /** Debugging class */
-    private static final transient Category DBG = Category.getInstance(NestedTokenManager.class);
+    private static final transient Logger DBG = Logger.getLogger(NestedTokenManager.class);
 
     /** This inner class contains information about a file being loaded */
     static class FileInfo
@@ -122,24 +122,16 @@ public class NestedTokenManager implements TokenManager
      */
     TokenManager getTokenManager(Token tok)
     {
-        String subStr;
-        if (tok.kind == AspParseConstants.ASPSCRIPT ||
-            tok.kind == AspParseConstants.OUTPUTSCRIPT)
-        {
-            subStr = tok.image.substring(2, tok.image.length() - 2);
-        } else if (tok.kind == AspParseConstants.SERVERSCRIPT)
-        {
-            subStr = getTokenContents(tok.image);
-        } else {
-            DebugContext ctx = new DebugContext();
-            tok.fillDebugContext(ctx);
-            throw new AspRuntimeException("Internal parse error: " +
-                "Unexptected token type " + tok.kind, ctx);
-        }
+        String subStr = tok.image;
         StringReader sr = new StringReader(subStr);
         SimpleCharStream stream = new SimpleCharStream(sr, tok.beginLine,
-            tok.beginColumn + 2);
-        return new VBScriptTokenManagerInterface(stream);
+            tok.beginColumn);
+        if (subTokenManager instanceof VBScriptTokenManagerInterface) {
+        	((VBScriptTokenManager)subTokenManager).ReInit(stream);
+        	return subTokenManager;
+        } else {
+        	return new VBScriptTokenManagerInterface(stream);
+        }
     }
 
     /**
@@ -228,7 +220,7 @@ public class NestedTokenManager implements TokenManager
                 return getNextToken();
             }
             switch(tok.kind)
-            {
+            {            		
                 case AspParseConstants.ASPSCRIPT:
                     subTokenManager = getTokenManager(tok);
                     inScript = true;
@@ -238,8 +230,6 @@ public class NestedTokenManager implements TokenManager
                     inScript = true;
                     return getNextToken();
                 case AspParseConstants.OUTPUTSCRIPT:
-                    subTokenManager = getTokenManager(tok);
-                    inScript = true;
                     nextToken = cloneToken(tok);
                     nextToken.kind = VBScriptConstants.OUTPUT;
 

@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -38,7 +38,7 @@ import java.util.Properties;
 public class PrintMessageExceptionHandler implements AspExceptionHandler
 {
     /** Debugging class */
-    static Category DBG = Category.getInstance(PrintExceptionHandler.class);
+    static Logger DBG = Logger.getLogger(PrintExceptionHandler.class);
 
     /** The message to display */
     String message;

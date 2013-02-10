@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -42,7 +42,7 @@ import java.util.Vector;
 public class AspCollection implements SimpleMap, Serializable
 {
     /** Debugging context */
-    static final Category DBG = Category.getInstance(AspCollection.class);
+    static final Logger DBG = Logger.getLogger(AspCollection.class);
 
     /**
      * The items of this collection.

@@ -28,7 +28,7 @@ import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 import com.tripi.asp.AspException;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class implements the CDONTS.NewMail ASP Object.
@@ -39,7 +39,7 @@ import org.apache.log4j.Category;
 public class NewMail
 {
     /** Debugging context */
-    static Category DBG = Category.getInstance(NewMail.class);
+    static Logger DBG = Logger.getLogger(NewMail.class);
 
     /** Which server to use for sending the mail */
     public String Host = null;

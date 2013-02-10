@@ -26,7 +26,7 @@ package com.tripi.asp;
 
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * Implements the internal VBScript arrays.
@@ -37,7 +37,7 @@ import org.apache.log4j.Category;
 public class ArrayNode extends DefaultNode implements MapNode
 {
     /** Debugging object */
-    private static final transient Category DBG = Category.getInstance(ArrayNode.class);
+    private static final transient Logger DBG = Logger.getLogger(ArrayNode.class);
 
     /** Contents of this array */
     Vector values;

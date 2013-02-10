@@ -26,7 +26,7 @@ package com.tripi.asp;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * AspNestedException handles generic sub-exceptions.
@@ -37,7 +37,7 @@ import org.apache.log4j.Category;
 public class AspNestedException extends AspException
 {
     /** Debugging category */
-    Category DBG = Category.getInstance(AspNestedException.class);
+    Logger DBG = Logger.getLogger(AspNestedException.class);
 
     /** Nested exception */
     Throwable nestedEx;

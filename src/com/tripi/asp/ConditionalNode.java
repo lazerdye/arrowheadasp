@@ -24,7 +24,7 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * Implements a conditional node. IF .. THEN .. ELSE .. END IF
@@ -35,7 +35,7 @@ import org.apache.log4j.Category;
 public class ConditionalNode implements Node
 {
     /** Debugging category */
-    private static final transient Category        DBG = Category.getInstance(ConditionalNode.class);
+    private static final transient Logger        DBG = Logger.getLogger(ConditionalNode.class);
 
     /** Condition to test */
     Node            condition;

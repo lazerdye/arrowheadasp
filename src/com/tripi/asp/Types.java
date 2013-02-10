@@ -29,7 +29,7 @@ import java.util.Date;
 import jregex.Pattern;
 import jregex.Replacer;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * The Types class contains utilities for conversion between data types.
@@ -40,7 +40,7 @@ import org.apache.log4j.Category;
 public class Types
 {
     /** Debugging instance */
-    static private final Category DBG = Category.getInstance(Types.class);
+    static private final Logger DBG = Logger.getLogger(Types.class);
 
     /**
      * Coerces a data type into an Integer type.

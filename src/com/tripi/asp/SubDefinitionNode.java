@@ -27,7 +27,7 @@ package com.tripi.asp;
 import java.util.Hashtable;
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * SubDefinitionCode contains the parsed representation of a subroutine
@@ -38,7 +38,7 @@ import org.apache.log4j.Category;
 public class SubDefinitionNode implements FunctionNode
 {
     /** Debugging category */
-    private static final transient Category DBG = Category.getInstance(SubDefinitionNode.class);
+    private static final transient Logger DBG = Logger.getLogger(SubDefinitionNode.class);
 
     /** Name of the subroutine/function */
     IdentNode        ident;

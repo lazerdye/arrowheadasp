@@ -31,7 +31,7 @@ import jregex.*;
 
 import com.tripi.asp.*;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 /**
  * This class represents the ADODB.Connection object. This object handles
@@ -64,7 +64,7 @@ import org.apache.log4j.Category;
 public class Connection
 {
     /** Debugging category. */
-    Category DBG = Category.getInstance(Connection.class);
+    Logger DBG = Logger.getLogger(Connection.class);
 
     /** Current java.sql.Connection object. */
     java.sql.Connection cx = null;
@@ -452,7 +452,7 @@ public class Connection
     static public class ErrorsClass implements SimpleMap
     {
         /** Debugging context */
-        static Category DBG = Category.getInstance(ErrorsClass.class);
+        static Logger DBG = Logger.getLogger(ErrorsClass.class);
 
         /** Internal list of SQL errors. */
         protected Vector _errorlist = new Vector();

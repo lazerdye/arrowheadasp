@@ -38,7 +38,7 @@ import java.util.Properties;
 import java.util.Vector;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 
 /**
@@ -50,7 +50,7 @@ import org.apache.log4j.Category;
 public class AspServlet extends HttpServlet implements HttpSessionListener
 {
     /** Debugging */
-    private Category DBG = Category.getInstance(AspServlet.class);
+    private Logger DBG = Logger.getLogger(AspServlet.class);
 
     /** Servlet configuration */
     ServletConfig config;
