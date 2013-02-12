@@ -1100,8 +1100,6 @@ public class VBScriptGlobals
         }
     }
 
-   // \/\/\/ Include by Wellington Rats -------------------------
-    
     /** Eval function */
     static class EvalFunction extends AbstractFunctionNode
     {
@@ -1143,8 +1141,6 @@ public class VBScriptGlobals
         }
     }
     
-    // /\/\/\ ----------------------------------------------------
-
     /** Math exponent function */
     static class ExpFunction extends AbstractFunctionNode
     {
