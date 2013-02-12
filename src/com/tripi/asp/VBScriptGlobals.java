@@ -24,17 +24,23 @@
  */
 package com.tripi.asp;
 
-import org.apache.log4j.Logger;
+import java.io.Reader;
+import java.io.StringReader;
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.*;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Hashtable;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Vector;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Hashtable;
+
+import org.apache.log4j.Logger;
+
+import com.tripi.asp.parse.SimpleCharStream;
+import com.tripi.asp.parse.VBScript;
+import com.tripi.asp.parse.VBScriptTokenManagerInterface;
 
 /**
  * The VBScriptGlobals class handles variables global to every VBScript
@@ -327,6 +333,7 @@ public class VBScriptGlobals
         context.put(new IdentNode("datevalue"), new DateValueFunction());
         context.put(new IdentNode("day"), new DayFunction());
         context.put(new IdentNode("erase"), new EraseFunction());
+        context.put(new IdentNode("eval"), new EvalFunction());
         context.put(new IdentNode("exp"), new ExpFunction());
         context.put(new IdentNode("fix"), new FixFunction());
         context.put(new IdentNode("formatdatetime"), new FormatDateFunction());
@@ -1092,6 +1099,51 @@ public class VBScriptGlobals
             return null;
         }
     }
+
+   // \/\/\/ Include by Wellington Rats -------------------------
+    
+    /** Eval function */
+    static class EvalFunction extends AbstractFunctionNode
+    {
+        /**
+         * Executes this function.
+         * @param values Parameters for this expression.
+         * @param context AspContext under which to evaluate this expression.
+         * @return Return value of this expression.
+         * @throws AspException if an error occurs.
+         * @see AbstractFunction#execute(Vector,AspContext)
+         */
+        public Object execute(Vector values, AspContext context)
+            throws AspException
+        {
+ 
+            if (values.size()!=1) {
+                throw new AspException("Invalid number of " +
+                    "arguments: " + values.size());
+            }
+            
+            try {
+                String sVal = Types.coerceToString(values.get(0));
+                Reader r    = new StringReader(sVal);
+                SimpleCharStream scs = new SimpleCharStream(r);
+                
+                VBScriptTokenManagerInterface tokManager = new VBScriptTokenManagerInterface(scs);
+                VBScript script = new VBScript(tokManager);
+                
+                Node node = script.ExprNode();
+                node.prepare(context);
+                Object result = node.execute(context);
+                return result;
+            } catch (Exception ex) {
+                System.out.println("Exception: " + ex.getClass());
+                ex.printStackTrace();
+            }
+
+            return null;
+        }
+    }
+    
+    // /\/\/\ ----------------------------------------------------
 
     /** Math exponent function */
     static class ExpFunction extends AbstractFunctionNode
