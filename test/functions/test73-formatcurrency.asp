@@ -32,4 +32,4 @@ FormatCurrency(TheDollars, 2, true, true, 0) =
 	<%= FormatCurrency(TheDollars, 2, true, true, 0) %><br>
 
 FormatCurrency(TheDollars, 2, true, true, 3) =
-	<%= FormatCurrency(TheDollars, 2, true, true, 3) %><br>
+	<%= FormatCurrency(TheDollars, 2, true, true, -1) %><br>
