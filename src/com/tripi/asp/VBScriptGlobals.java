@@ -1323,11 +1323,7 @@ public class VBScriptGlobals
             form.setMaximumFractionDigits(prec.intValue());
             form.setCurrency(Currency.getInstance(Locale.getDefault()));
 
-            if (Locale.getDefault() == Locale.US) {
-                return "$" + form.format(num);
-            } else {
-                return form.format(num);
-            }
+            return form.format(num);
         }
     }
 
