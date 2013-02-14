@@ -1287,7 +1287,7 @@ public class VBScriptGlobals
 		    for (int i = 0; i < prec.intValue(); i++) 
 		    	decimals += "0";
 		    
-            DecimalFormat form = new DecimalFormat("¤0" + decimals);
+            DecimalFormat form = new DecimalFormat("\2440" + decimals);
             
             if(leading.intValue() == -1) {
             	form.setMinimumIntegerDigits(1);
