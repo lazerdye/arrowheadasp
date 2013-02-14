@@ -30,6 +30,7 @@ import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Locale;
@@ -1271,32 +1272,57 @@ public class VBScriptGlobals
                 throw new AspException("Invalid number of arguments: " + values.size());
             Double num = Types.coerceToDouble(values.get(0));
             Integer prec = new Integer(2);
-            Boolean leading = Boolean.TRUE;
-            Boolean negParens = Boolean.FALSE;
-            Integer groupDigit = new Integer(0);
+            Integer leading = new Integer(-2);
+            Integer negParens = new Integer(-2);
+            Integer groupDigit = new Integer(-2);
             if (values.size() >= 2) 
                 prec = Types.coerceToInteger(values.get(1));
             if (values.size() >= 3) 
-                leading = Types.coerceToBoolean(values.get(2));
+                leading = Types.coerceToInteger(values.get(2));
             if (values.size() >= 4) 
-                negParens = Types.coerceToBoolean(values.get(3));
+                negParens = Types.coerceToInteger(values.get(3));
             if (values.size() == 5) 
                 groupDigit = Types.coerceToInteger(values.get(4));
-	    String decimals = ".";
-	    for (int i = 0; i < prec.intValue(); i++) 
-	        decimals += "0";
-            DecimalFormat form = new DecimalFormat("$0" + decimals);
-            if (!leading.booleanValue()) 
+		    String decimals = ".";
+		    for (int i = 0; i < prec.intValue(); i++) 
+		    	decimals += "0";
+		    
+            DecimalFormat form = new DecimalFormat("¤0" + decimals);
+            
+            if(leading.intValue() == -1) {
+            	form.setMinimumIntegerDigits(1);
+            } else if(leading.intValue() == -2) {
+            	form.setMinimumIntegerDigits(DecimalFormat.getInstance().getMinimumIntegerDigits());
+            } else if(leading.intValue() == 0) {
                 form.setMinimumIntegerDigits(0);
-            if (negParens.booleanValue()) {
-                form.setNegativePrefix("(");
+            }
+            
+            if (negParens.intValue() == -1) {
+                form.setNegativePrefix("(" + form.getPositivePrefix());
                 form.setNegativeSuffix(")");
+            } else if(negParens.intValue() == -2) {
+            	String negPref = 	((DecimalFormat) DecimalFormat.getInstance()).getNegativePrefix() + 
+			               			((DecimalFormat) DecimalFormat.getInstance()).getPositivePrefix();
+            	String negSuf  = 	((DecimalFormat) DecimalFormat.getInstance()).getNegativeSuffix();
+            	form.setNegativePrefix(negPref);
+            	form.setNegativeSuffix(negSuf);
+            } else if(negParens.intValue() == 0) {
+            	form.setNegativePrefix("-" + form.getPositivePrefix());
+            	form.setNegativeSuffix("");
             }
-            if (groupDigit.intValue() > 0) {
-                form.setGroupingSize(groupDigit.intValue());
-                form.setGroupingUsed(true);
+            
+        	form.setGroupingSize(3);
+            if(groupDigit.intValue() == -1) {
+            	form.setGroupingUsed(true);
+            } else if (groupDigit.intValue() == -2) {
+                 form.setGroupingUsed(DecimalFormat.getCurrencyInstance().isGroupingUsed());
+            } else if (groupDigit.intValue() == 0 ){
+            	form.setGroupingUsed(false);
             }
+
             form.setMaximumFractionDigits(prec.intValue());
+            form.setCurrency(Currency.getInstance(Locale.getDefault()));
+
             if (Locale.getDefault() == Locale.US) {
                 return "$" + form.format(num);
             } else {
