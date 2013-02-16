@@ -5,6 +5,17 @@ Dim TheDollars <% Dim TheDollars %><br>
 
 TheDollars = "-0.9876" <% TheDollars = "-0.9876" %><br>
 
+<%
+FOR lead = 0 to -2 step -1
+	FOR neg= 0 to -2 step -1
+	  FOR group = -0 to -2 step -1
+		Response.Write("FormatCurrencyTheDollars,4," & lead & "," & neg & "," & group &") = ")
+		Response.Write(FormatCurrency(TheDollars,4,lead,neg,group) & "<BR>")
+	  NEXT
+	NEXT
+NEXT
+%>
+
 FormatCurrency(TheDollars) =
 	<%= FormatCurrency(TheDollars) %><br>
 
@@ -28,8 +39,14 @@ FormatCurrency(TheDollars, 2, true, false) =
 
 TheDollars = "-123456789" <% TheDollars = "-123456789" %><br>
 
-FormatCurrency(TheDollars, 2, true, true, 0) =
-	<%= FormatCurrency(TheDollars, 2, true, true, 0) %><br>
+<%
+FOR lead = 0 to -2 step -1
+	FOR neg= 0 to -2 step -1
+	  FOR group = -0 to -2 step -1
+		Response.Write("FormatCurrencyTheDollars,2," & lead & "," & neg & "," & group &") = ")
+		Response.Write(FormatCurrency(TheDollars,2,lead,neg,group) & "<BR>")
+	  NEXT
+	NEXT
+NEXT
+%>
 
-FormatCurrency(TheDollars, 2, true, true, 3) =
-	<%= FormatCurrency(TheDollars, 2, true, true, -1) %><br>
